@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tableau de synthèse E5 — Abdoulaye COULIBALY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #ede0ca; color: #1c1206; padding: 2rem; }
+
+    .print-bar {
+      max-width: 1200px; margin: 0 auto 1.5rem;
+      background: #fffdf8; border-radius: 14px; padding: 1rem 1.5rem;
+      box-shadow: 0 2px 12px rgba(122,79,46,.1);
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    }
+    .print-bar span { font-size: .88rem; font-weight: 600; color: #7a6650; }
+    .print-btns { display: flex; gap: .75rem; }
+    .pbtn { padding: .5rem 1.2rem; border-radius: 8px; font-size: .85rem; font-weight: 700; cursor: pointer; border: none; text-decoration: none; display: inline-flex; align-items: center; gap: .4rem; transition: opacity .2s; }
+    .pbtn:hover { opacity: .85; }
+    .pbtn-main { background: linear-gradient(135deg,#7a4f2e,#c4883a); color: #fff; }
+    .pbtn-sec { background: transparent; border: 1.5px solid #cdb898; color: #7a6650; }
+
+    /* DOC */
+    .doc { max-width: 1200px; margin: 0 auto; background: white; box-shadow: 0 8px 40px rgba(122,79,46,.15); border-radius: 16px; overflow: hidden; }
+
+    /* HEADER OFFICIEL */
+    .doc-title-bar {
+      background: linear-gradient(135deg, #7a4f2e, #c4883a);
+      color: white; padding: 1.2rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .doc-title-bar h1 { font-size: 1rem; font-weight: 800; letter-spacing: .02em; }
+    .doc-title-bar span { font-size: .9rem; font-weight: 700; opacity: .9; }
+    .doc-subtitle {
+      background: #f2e9d8; border-bottom: 2px solid #cdb898;
+      padding: .8rem 2rem; text-align: center;
+      font-size: .95rem; font-weight: 800; letter-spacing: .05em; color: #2e1e0a;
+    }
+
+    /* INFO ÉTUDIANT */
+    .student-info {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 2px solid #1c1206;
+    }
+    .si-cell {
+      padding: .6rem 1rem; border-right: 1px solid #ccc; font-size: .82rem;
+    }
+    .si-cell:last-child { border-right: none; }
+    .si-cell .lbl { font-weight: 700; color: #7a6650; font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; }
+    .si-cell .val { font-weight: 600; color: #1c1206; margin-top: .15rem; }
+    .si-option {
+      padding: .6rem 1rem; display: flex; align-items: center; gap: 1.5rem; font-size: .82rem;
+    }
+    .si-option .lbl { font-weight: 700; color: #7a6650; font-size: .72rem; text-transform: uppercase; }
+    .opt-item { display: flex; align-items: center; gap: .4rem; font-weight: 600; }
+    .opt-box { width: 14px; height: 14px; border: 1.5px solid #1c1206; border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: .7rem; }
+    .opt-box.checked { background: #7a4f2e; color: white; border-color: #7a4f2e; }
+
+    .url-bar {
+      padding: .5rem 1rem; background: #faf6ef; border-bottom: 1px solid #e4d5bc;
+      font-size: .82rem; font-weight: 600; color: #7a4f2e;
+      display: flex; align-items: center; gap: .5rem;
+    }
+
+    /* GRAND TABLEAU */
+    .wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: .75rem; }
+
+    /* En-tête colonnes compétences */
+    .th-group { background: #7a4f2e; color: white; text-align: center; padding: .5rem .3rem; font-size: .7rem; font-weight: 700; border: 1px solid #5a3520; line-height: 1.3; vertical-align: middle; }
+    .th-sub { background: #f2e9d8; text-align: center; padding: .4rem .25rem; font-size: .65rem; font-weight: 600; color: #2e1e0a; border: 1px solid #cdb898; line-height: 1.3; vertical-align: top; }
+    .th-real { background: #c4883a; color: white; text-align: left; padding: .5rem .8rem; font-size: .72rem; font-weight: 700; border: 1px solid #9b6535; }
+    .th-period { background: #f2e9d8; text-align: center; padding: .4rem .3rem; font-size: .65rem; font-weight: 700; border: 1px solid #cdb898; writing-mode: vertical-rl; transform: rotate(180deg); min-width: 55px; }
+
+    /* Section headers */
+    .section-row td {
+      background: #e8d8c0; font-size: .72rem; font-weight: 800; padding: .5rem 1rem;
+      text-align: center; letter-spacing: .08em; text-transform: uppercase;
+      color: #2e1e0a; border: 1px solid #cdb898;
+    }
+
+    /* Lignes normales */
+    td { border: 1px solid #ddd; padding: .45rem .5rem; vertical-align: middle; line-height: 1.4; color: #1c1206; }
+    .td-real { font-size: .74rem; font-weight: 500; text-align: left; padding: .5rem .8rem; background: #fffdf8; }
+    .td-period { font-size: .7rem; color: #7a6650; text-align: center; white-space: nowrap; background: #faf6ef; }
+    .td-check { text-align: center; background: #fffdf8; }
+    .check { font-size: 1.1rem; color: #7a4f2e; font-weight: 900; line-height: 1; }
+    tr:hover td { background: #faf6ef !important; }
+    tr.section-row:hover td { background: #e8d8c0 !important; }
+
+    /* FOOTER */
+    .doc-footer {
+      padding: 1rem 2rem; background: #f2e9d8; border-top: 2px solid #cdb898;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem;
+      font-size: .78rem; color: #7a6650;
+    }
+    .doc-footer strong { color: #1c1206; }
+
+    @media print {
+      body { background: white; padding: 0; }
+      .print-bar { display: none; }
+      .doc { box-shadow: none; border-radius: 0; max-width: 100%; }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      tr:hover td { background: inherit !important; }
+    }
+    @media (max-width: 700px) {
+      body { padding: .5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="print-bar">
+  <span>📊 Tableau de synthèse E5 — Abdoulaye COULIBALY · BTS SIO SISR · Session 2026</span>
+  <div class="print-btns">
+    <button class="pbtn pbtn-main" onclick="window.print()">🖨 Enregistrer en PDF</button>
+    <a class="pbtn pbtn-sec" href="index.html">← Portfolio</a>
+  </div>
+</div>
+
+<div class="doc">
+
+  <!-- TITRE OFFICIEL -->
+  <div class="doc-title-bar">
+    <h1>BTS SERVICES INFORMATIQUES AUX ORGANISATIONS</h1>
+    <span>SESSION 2026</span>
+  </div>
+  <div class="doc-subtitle">Tableau de synthèse des réalisations professionnelles</div>
+
+  <!-- INFO ÉTUDIANT -->
+  <div class="student-info">
+    <div class="si-cell">
+      <div class="lbl">NOM et prénom</div>
+      <div class="val">COULIBALY Abdoulaye</div>
+    </div>
+    <div class="si-cell">
+      <div class="lbl">N° candidat</div>
+      <div class="val">002249585587</div>
+    </div>
+    <div class="si-cell" style="display:flex;align-items:center;gap:2rem;">
+      <div>
+        <div class="lbl">Option</div>
+        <div style="display:flex;gap:1.2rem;margin-top:.2rem;">
+          <div class="opt-item"><div class="opt-box checked">✓</div> SISR</div>
+          <div class="opt-item"><div class="opt-box">□</div> SLAM</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="student-info" style="grid-template-columns:1fr 1fr;">
+    <div class="si-cell">
+      <div class="lbl">Centre de formation</div>
+      <div class="val">IPSSI Paris</div>
+    </div>
+    <div class="si-cell">
+      <div class="lbl">Période du stage E5</div>
+      <div class="val">28/04/2025 au 20/06/2025</div>
+    </div>
+  </div>
+  <div class="url-bar">
+    🌐 Adresse URL du portfolio : <a href="https://urls.fr/GEy6LS" style="color:#7a4f2e;">https://urls.fr/GEy6LS</a>
+  </div>
+
+  <!-- GRAND TABLEAU -->
+  <div class="wrap">
+    <table>
+      <!-- EN-TÊTES -->
+      <colgroup>
+        <col style="width:36%"/>
+        <col style="width:6%"/>
+        <col style="width:9%"/>
+        <col style="width:9%"/>
+        <col style="width:9%"/>
+        <col style="width:9%"/>
+        <col style="width:9%"/>
+        <col style="width:9%"/>
+      </colgroup>
+      <thead>
+        <!-- Ligne 1 : grands groupes -->
+        <tr>
+          <th class="th-real" rowspan="2">Réalisations professionnelles<br/><span style="font-weight:400;font-size:.65rem;">(intitulé et liste des documents et productions associés)</span></th>
+          <th class="th-period" rowspan="2">Période</th>
+          <th class="th-group" colspan="6">Compétences mises en œuvre</th>
+        </tr>
+        <!-- Ligne 2 : noms des compétences -->
+        <tr>
+          <th class="th-sub">Gérer le patrimoine informatique</th>
+          <th class="th-sub">Répondre aux incidents et aux demandes d'assistance et d'évolution</th>
+          <th class="th-sub">Développer la présence en ligne de l'organisation</th>
+          <th class="th-sub">Travailler en mode projet</th>
+          <th class="th-sub">Mettre à disposition des utilisateurs un service informatique</th>
+          <th class="th-sub">Organiser son développement professionnel</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- ── FORMATION ── -->
+        <tr class="section-row"><td colspan="8">Réalisation en cours de formation</td></tr>
+
+        <tr>
+          <td class="td-real">Mise en place d'outils de monitoring et amélioration des performances du système</td>
+          <td class="td-period">Depuis 11/10/24</td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"><span class="check">✗</span></td>
+        </tr>
+
+        <tr>
+          <td class="td-real">Configuration de routeurs et de switches Cisco (VLAN, STP, routage statique/dynamique) — Mise en place de services réseau (DHCP, DNS, NAT)</td>
+          <td class="td-period">22/10/25</td>
+          <td class="td-check"><span class="check">✗</span></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+        </tr>
+
+        <tr>
+          <td class="td-real">Suivi des évolutions technologiques et rédaction de documentations techniques</td>
+          <td class="td-period">Depuis 11/10/24</td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"><span class="check">✗</span></td>
+        </tr>
+
+        <tr>
+          <td class="td-real">Création et gestion de machines virtuelles avec VirtualBox, Hyper-V, VMware ESXi</td>
+          <td class="td-period">04/11/24</td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"><span class="check">✗</span></td>
+          <td class="td-check"></td>
+        </tr>
+
+        <tr>
+          <td class="td-real">Mise en place et configuration d'une baie d'infrastructure réseau dans un environnement virtuel Proxmox segmenté par PfSense comprenant de nombreux outils (VPN, AD, Cluster DHCP…)</td>
+          <td class="td-period">16/09/25 — 22/05/26</td>
+          <td class="td-check"><span class="check">✗</span></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"><span class="check">✗</span></td>
+          <td class="td-check"><span class="check">✗</span></td>
+          <td class="td-check"><span class="check">✗</span></td>
+        </tr>
+
+        <!-- ── 1ÈRE ANNÉE PRO ── -->
+        <tr class="section-row"><td colspan="8">Réalisations en milieu professionnel en cours de première année — IFFP (05/05/25 – 09/07/25)</td></tr>
+
+        <tr>
+          <td class="td-real">Gestion d'un parc informatique</td>
+          <td class="td-period">05/05/25 – 09/07/25</td>
+          <td class="td-check"><span class="check">✗</span></td>
+          <td class="td-check"><span class="check">✗</span></td>
+          <td class="td-check"><span class="check">✗</span></td>
+          <td class="td-check"><span class="check">✗</span></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+        </tr>
+
+        <tr>
+          <td class="td-real">Mise en place d'outils de monitoring et amélioration des performances du système</td>
+          <td class="td-period">05/05/25 – 09/07/25</td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"><span class="check">✗</span></td>
+          <td class="td-check"></td>
+        </tr>
+
+        <tr>
+          <td class="td-real">Conception et déploiement de solutions adaptées aux besoins de l'entreprise</td>
+          <td class="td-period">05/05/25 – 09/07/25</td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"><span class="check">✗</span></td>
+        </tr>
+
+        <tr>
+          <td class="td-real">Suivi des évolutions technologiques et rédaction de documentations techniques</td>
+          <td class="td-period">05/05/25 – 09/07/25</td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"><span class="check">✗</span></td>
+          <td class="td-check"></td>
+        </tr>
+
+        <tr>
+          <td class="td-real">Installation, configuration et maintenance des équipements réseau et serveurs</td>
+          <td class="td-period">05/05/25 – 09/07/25</td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"><span class="check">✗</span></td>
+        </tr>
+
+        <tr>
+          <td class="td-real">Préparation matérielle d'outils informatiques</td>
+          <td class="td-period">05/05/25 – 09/07/25</td>
+          <td class="td-check"><span class="check">✗</span></td>
+          <td class="td-check"><span class="check">✗</span></td>
+          <td class="td-check"><span class="check">✗</span></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+        </tr>
+
+        <!-- ── 2ÈME ANNÉE PRO ── -->
+        <tr class="section-row"><td colspan="8">Réalisations en milieu professionnel en cours de seconde année — METRO FRANCE (10/11/25 – 20/02/26)</td></tr>
+
+        <tr>
+          <td class="td-real">Gestion d'un parc informatique</td>
+          <td class="td-period">10/11/25 – 20/02/26</td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+        </tr>
+
+        <tr>
+          <td class="td-real">Suivi des évolutions technologiques et rédaction de documentations techniques</td>
+          <td class="td-period">10/11/25 – 20/02/26</td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"><span class="check">✗</span></td>
+          <td class="td-check"></td>
+        </tr>
+
+        <tr>
+          <td class="td-real">Installation, configuration et maintenance des équipements réseau et serveurs</td>
+          <td class="td-period">10/11/25 – 20/02/26</td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"><span class="check">✗</span></td>
+        </tr>
+
+        <tr>
+          <td class="td-real">Préparation matérielle d'outils informatiques</td>
+          <td class="td-period">10/11/25 – 20/02/26</td>
+          <td class="td-check"><span class="check">✗</span></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+        </tr>
+
+        <tr>
+          <td class="td-real">Résolution de problèmes informatiques de type N1</td>
+          <td class="td-period">10/11/25 – 20/02/26</td>
+          <td class="td-check"><span class="check">✗</span></td>
+          <td class="td-check"><span class="check">✗</span></td>
+          <td class="td-check"><span class="check">✗</span></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+          <td class="td-check"></td>
+        </tr>
+
+        <!-- Lignes vides -->
+        <tr><td class="td-real" style="height:28px"></td><td class="td-period"></td><td class="td-check"></td><td class="td-check"></td><td class="td-check"></td><td class="td-check"></td><td class="td-check"></td><td class="td-check"></td></tr>
+        <tr><td class="td-real" style="height:28px"></td><td class="td-period"></td><td class="td-check"></td><td class="td-check"></td><td class="td-check"></td><td class="td-check"></td><td class="td-check"></td><td class="td-check"></td></tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <div class="doc-footer">
+    <span>BTS SIO SISR — SESSION 2026 · <strong>COULIBALY Abdoulaye</strong> · N° 002249585587</span>
+    <span>IPSSI Paris · <strong>Ctrl+P pour enregistrer en PDF</strong></span>
+  </div>
+</div>
+
+</body>
+</html>

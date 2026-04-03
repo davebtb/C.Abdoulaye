@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CV — Abdoulaye COULIBALY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent:  #7a4f2e;
+      --accent2: #c4883a;
+      --text:    #1c1206;
+      --muted:   #7a6650;
+      --light:   #faf6ef;
+      --bg2:     #f2e9d8;
+      --border:  #e4d5bc;
+      --border2: #cdb898;
+      --white:   #fffdf8;
+      --grad:    linear-gradient(135deg,#7a4f2e,#c4883a);
+    }
+    body { font-family: 'Inter', sans-serif; background: #ede0ca; color: var(--text); padding: 2rem; min-height: 100vh; }
+
+    .print-bar {
+      max-width: 880px; margin: 0 auto 1.5rem;
+      background: var(--white); border-radius: 14px; padding: 1rem 1.5rem;
+      box-shadow: 0 2px 12px rgba(122,79,46,.1);
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    }
+    .print-bar span { font-size: .88rem; font-weight: 600; color: var(--muted); }
+    .print-btns { display: flex; gap: .75rem; }
+    .pbtn {
+      padding: .5rem 1.2rem; border-radius: 8px; font-size: .85rem; font-weight: 700;
+      cursor: pointer; border: none; text-decoration: none; display: inline-flex; align-items: center; gap: .4rem;
+      transition: opacity .2s;
+    }
+    .pbtn:hover { opacity: .85; }
+    .pbtn-main { background: var(--grad); color: #fff; }
+    .pbtn-sec { background: transparent; border: 1.5px solid var(--border2); color: var(--muted); }
+
+    .cv { max-width: 880px; margin: 0 auto; background: var(--white); border-radius: 20px; box-shadow: 0 8px 40px rgba(122,79,46,.15); overflow: hidden; }
+
+    /* HEADER */
+    .cv-head {
+      background: var(--grad); color: #fff;
+      padding: 2.8rem 3rem 2.2rem;
+      display: flex; gap: 2.2rem; align-items: center;
+    }
+    .cv-avatar {
+      width: 100px; height: 100px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(255,255,255,.2); border: 3px solid rgba(255,255,255,.45);
+      display: flex; align-items: center; justify-content: center; font-size: 3rem;
+    }
+    .cv-head-info h1 { font-size: 2rem; font-weight: 900; letter-spacing: -.04em; margin-bottom: .15rem; }
+    .cv-head-info h2 { font-size: 1rem; font-weight: 500; opacity: .9; margin-bottom: 1.2rem; font-family: 'JetBrains Mono',monospace; }
+    .cv-contacts { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .cv-contact {
+      display: flex; align-items: center; gap: .35rem;
+      background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25);
+      padding: .25rem .75rem; border-radius: 999px; font-size: .78rem; font-weight: 500;
+    }
+    .cv-status {
+      display: inline-block; margin-top: .9rem;
+      font-size: .78rem; font-weight: 700; font-family: 'JetBrains Mono',monospace;
+      background: rgba(255,255,255,.2); border: 1px dashed rgba(255,255,255,.5);
+      padding: .3rem .9rem; border-radius: 8px;
+    }
+
+    /* BODY */
+    .cv-body { display: grid; grid-template-columns: 245px 1fr; }
+
+    /* SIDEBAR */
+    .cv-aside { background: var(--light); padding: 2.2rem 1.8rem; border-right: 1px solid var(--border); }
+    .aside-sec { margin-bottom: 2rem; }
+    .aside-title {
+      font-size: .66rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--accent); padding-bottom: .5rem; border-bottom: 2px solid var(--accent);
+      margin-bottom: .9rem; font-family: 'JetBrains Mono',monospace;
+    }
+    .s-row { display: flex; flex-direction: column; margin-bottom: .85rem; }
+    .s-row-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: .3rem; }
+    .s-name { font-size: .82rem; font-weight: 500; color: var(--text); }
+    .s-pct { font-size: .72rem; color: var(--muted); }
+    .bar { height: 5px; background: var(--bg2); border-radius: 999px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 999px; background: var(--grad); }
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .stag {
+      font-size: .73rem; padding: .2rem .6rem; border-radius: 6px;
+      background: var(--bg2); border: 1px solid var(--border); color: var(--muted);
+    }
+    .lang-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: .6rem; }
+    .lang-nm { font-size: .85rem; font-weight: 600; }
+    .lang-lv {
+      font-size: .7rem; font-weight: 700; padding: .18rem .55rem; border-radius: 999px;
+      background: linear-gradient(135deg,#7a4f2e18,#c4883a18); border: 1px solid var(--border2); color: var(--accent);
+    }
+    .loisir-list { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .loisir { font-size: .76rem; padding: .22rem .6rem; border-radius: 999px; background: var(--white); border: 1px solid var(--border); color: var(--muted); }
+    .qual-list { display: flex; flex-direction: column; gap: .4rem; }
+    .qual-item { display: flex; align-items: center; gap: .5rem; font-size: .84rem; color: var(--muted); }
+    .qual-item::before { content: '▸'; color: var(--accent2); font-size: .7rem; }
+
+    /* MAIN */
+    .cv-main { padding: 2.2rem 2.5rem; }
+    .main-sec { margin-bottom: 2.2rem; }
+    .main-title {
+      font-size: .66rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--accent); padding-bottom: .5rem; border-bottom: 2px solid var(--accent);
+      margin-bottom: 1.1rem; font-family: 'JetBrains Mono',monospace;
+    }
+    .profile-p { font-size: .88rem; color: var(--muted); line-height: 1.8; }
+
+    .exp { padding-bottom: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+    .exp:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .exp-hd { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: .35rem; gap: 1rem; }
+    .exp-title { font-size: .98rem; font-weight: 800; }
+    .exp-date {
+      font-size: .72rem; font-weight: 700; padding: .2rem .65rem; border-radius: 999px;
+      background: var(--grad); color: #fff; white-space: nowrap; font-family: 'JetBrains Mono',monospace; flex-shrink: 0;
+    }
+    .exp-org { font-size: .86rem; color: var(--accent2); font-weight: 600; margin-bottom: .2rem; }
+    .exp-type { font-size: .76rem; color: var(--muted); font-style: italic; margin-bottom: .6rem; }
+    .exp-list { list-style: none; }
+    .exp-list li { font-size: .84rem; color: var(--text); padding: .28rem 0 .28rem 1rem; position: relative; line-height: 1.5; border-bottom: 1px solid var(--border); }
+    .exp-list li:last-child { border-bottom: none; }
+    .exp-list li::before { content: '▸'; position: absolute; left: 0; color: var(--accent2); }
+    .exp-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .6rem; }
+    .etag { font-size: .7rem; padding: .18rem .55rem; border-radius: 999px; background: linear-gradient(135deg,#7a4f2e0d,#c4883a0d); border: 1px solid var(--border); color: var(--accent); font-weight: 500; }
+
+    .edu-item { display: flex; gap: 1.1rem; margin-bottom: 1.2rem; }
+    .edu-item:last-child { margin-bottom: 0; }
+    .edu-dot {
+      width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0;
+      background: linear-gradient(135deg,#7a4f2e18,#c4883a18); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+    }
+    .edu-year { font-size: .72rem; color: var(--accent2); font-weight: 700; margin-bottom: .15rem; font-family: 'JetBrains Mono',monospace; }
+    .edu-name { font-size: .93rem; font-weight: 800; }
+    .edu-school { font-size: .82rem; color: var(--muted); }
+
+    @media print {
+      body { background: white; padding: 0; }
+      .print-bar { display: none; }
+      .cv { box-shadow: none; border-radius: 0; max-width: 100%; }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+    @media (max-width: 640px) {
+      body { padding: .5rem; }
+      .cv-body { grid-template-columns: 1fr; }
+      .cv-aside { border-right: none; border-bottom: 1px solid var(--border); }
+      .cv-head { flex-direction: column; text-align: center; }
+      .cv-contacts { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+<div class="print-bar">
+  <span>📄 CV — Abdoulaye COULIBALY · BTS SIO SISR · IPSSI Paris</span>
+  <div class="print-btns">
+    <button class="pbtn pbtn-main" onclick="window.print()">🖨 Enregistrer en PDF</button>
+    <a class="pbtn pbtn-sec" href="index.html">← Retour au portfolio</a>
+  </div>
+</div>
+
+<div class="cv">
+
+  <!-- HEADER -->
+  <div class="cv-head">
+    <div class="cv-avatar">👨🏿‍💻</div>
+    <div class="cv-head-info">
+      <h1>Abdoulaye COULIBALY</h1>
+      <h2>$ Technicien Système &amp; Réseau — BTS SIO SISR</h2>
+      <div class="cv-contacts">
+        <span class="cv-contact">📧 abdoulayecoul667@gmail.com</span>
+        <span class="cv-contact">📞 +33 6 21 28 81 94</span>
+        <span class="cv-contact">📍 Saint-Denis (93200), Île-de-France</span>
+        <span class="cv-contact">🔰 19 ans</span>
+      </div>
+      <div class="cv-status">⚡ En recherche d'alternance · 1 sem école / 1 sem entreprise</div>
+    </div>
+  </div>
+
+  <div class="cv-body">
+
+    <!-- ASIDE -->
+    <aside class="cv-aside">
+
+      <div class="aside-sec">
+        <div class="aside-title">Systèmes & Réseaux</div>
+        <div class="s-row"><div class="s-row-top"><span class="s-name">Cisco / Switching</span><span class="s-pct">75%</span></div><div class="bar"><div class="bar-fill" style="width:75%"></div></div></div>
+        <div class="s-row"><div class="s-row-top"><span class="s-name">DNS / DHCP / VPN</span><span class="s-pct">80%</span></div><div class="bar"><div class="bar-fill" style="width:80%"></div></div></div>
+        <div class="s-row"><div class="s-row-top"><span class="s-name">Windows Server / AD</span><span class="s-pct">78%</span></div><div class="bar"><div class="bar-fill" style="width:78%"></div></div></div>
+        <div class="s-row"><div class="s-row-top"><span class="s-name">Firewall / Sécurité</span><span class="s-pct">70%</span></div><div class="bar"><div class="bar-fill" style="width:70%"></div></div></div>
+      </div>
+
+      <div class="aside-sec">
+        <div class="aside-title">Linux & Virtualisation</div>
+        <div class="s-row"><div class="s-row-top"><span class="s-name">Ubuntu / Debian</span><span class="s-pct">75%</span></div><div class="bar"><div class="bar-fill" style="width:75%"></div></div></div>
+        <div class="s-row"><div class="s-row-top"><span class="s-name">Kali Linux</span><span class="s-pct">65%</span></div><div class="bar"><div class="bar-fill" style="width:65%"></div></div></div>
+        <div class="s-row"><div class="s-row-top"><span class="s-name">VirtualBox / VMware</span><span class="s-pct">80%</span></div><div class="bar"><div class="bar-fill" style="width:80%"></div></div></div>
+        <div class="s-row"><div class="s-row-top"><span class="s-name">Zabbix</span><span class="s-pct">70%</span></div><div class="bar"><div class="bar-fill" style="width:70%"></div></div></div>
+      </div>
+
+      <div class="aside-sec">
+        <div class="aside-title">Développement & BDD</div>
+        <div class="tag-cloud">
+          <span class="stag">HTML5/CSS3</span><span class="stag">JavaScript</span>
+          <span class="stag">Python</span><span class="stag">Java</span>
+          <span class="stag">NodeJS</span><span class="stag">MySQL</span>
+          <span class="stag">Oracle</span><span class="stag">SQL</span>
+        </div>
+      </div>
+
+      <div class="aside-sec">
+        <div class="aside-title">Outils</div>
+        <div class="tag-cloud">
+          <span class="stag">Git / GitHub</span><span class="stag">Visual Studio</span>
+          <span class="stag">Cursor</span><span class="stag">MS Teams</span>
+          <span class="stag">TryHackMe</span><span class="stag">RootMe</span>
+          <span class="stag">GLPI</span><span class="stag">SSL/TLS</span>
+        </div>
+      </div>
+
+      <div class="aside-sec">
+        <div class="aside-title">Langues</div>
+        <div class="lang-row"><span class="lang-nm">🇫🇷 Français</span><span class="lang-lv">Natif</span></div>
+        <div class="lang-row"><span class="lang-nm">🇬🇧 Anglais</span><span class="lang-lv">B2</span></div>
+        <div class="lang-row"><span class="lang-nm">🇪🇸 Espagnol</span><span class="lang-lv">B1</span></div>
+      </div>
+
+      <div class="aside-sec">
+        <div class="aside-title">Qualités</div>
+        <div class="qual-list">
+          <span class="qual-item">Rigoureux</span>
+          <span class="qual-item">Discipliné</span>
+          <span class="qual-item">Travail d'équipe</span>
+          <span class="qual-item">Sérieux</span>
+          <span class="qual-item">Responsable</span>
+        </div>
+      </div>
+
+      <div class="aside-sec">
+        <div class="aside-title">Centres d'intérêt</div>
+        <div class="loisir-list">
+          <span class="loisir">🔒 CTF</span>
+          <span class="loisir">🖥 Homelab</span>
+          <span class="loisir">📡 Réseaux</span>
+          <span class="loisir">🎮 Gaming</span>
+          <span class="loisir">⚽ Sport</span>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- MAIN -->
+    <main class="cv-main">
+
+      <div class="main-sec">
+        <div class="main-title">Profil</div>
+        <p class="profile-p">
+          Étudiant en <strong>BTS SIO option SISR</strong> à l'IPSSI Paris, passionné par
+          l'administration des systèmes, réseaux et la cybersécurité. Fort de 3 expériences
+          professionnelles (stage, emploi, projet étudiant), je cherche une alternance pour
+          approfondir mes compétences en infrastructure. Rigoureux, discipliné et curieux,
+          je pratique également la cybersécurité sur TryHackMe et RootMe.
+        </p>
+      </div>
+
+      <div class="main-sec">
+        <div class="main-title">Expériences Professionnelles</div>
+
+        <div class="exp">
+          <div class="exp-hd">
+            <div><div class="exp-title">Administrateur Systèmes & Réseaux</div></div>
+            <span class="exp-date">Mai 2025 — Juil. 2025</span>
+          </div>
+          <div class="exp-org">IFFP — Institut de Formation des Formateurs Professionnels</div>
+          <div class="exp-type">Stage</div>
+          <ul class="exp-list">
+            <li>Déploiement d'un annuaire Active Directory via l'API Google</li>
+            <li>Installation, configuration et sécurisation de serveurs VPS (protection DDoS)</li>
+            <li>Mise en place de l'infrastructure réseau : switchs, câblage, DNS, routage local</li>
+            <li>Implémentation d'une solution de sauvegarde cloud et gestion VoIP (Keyyo)</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="etag">Active Directory</span><span class="etag">VPS</span>
+            <span class="etag">DNS</span><span class="etag">VoIP</span><span class="etag">Réseau</span>
+          </div>
+        </div>
+
+        <div class="exp">
+          <div class="exp-hd">
+            <div><div class="exp-title">Technicien Support Informatique</div></div>
+            <span class="exp-date">Nov. 2025 — Fév. 2026</span>
+          </div>
+          <div class="exp-org">METRO FRANCE</div>
+          <div class="exp-type">Emploi</div>
+          <ul class="exp-list">
+            <li>Configuration du matériel informatique et gestion du parc</li>
+            <li>Accueil utilisateurs, analyse des besoins, résolution incidents N1</li>
+            <li>Mise à jour de la base de connaissances et de la documentation</li>
+            <li>Escalade des incidents complexes vers les équipes N3</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="etag">Support N1</span><span class="etag">ITSM</span>
+            <span class="etag">Parc informatique</span><span class="etag">Windows</span>
+          </div>
+        </div>
+
+        <div class="exp">
+          <div class="exp-hd">
+            <div><div class="exp-title">Technicien Système & Réseaux</div></div>
+            <span class="exp-date">Depuis Oct. 2024</span>
+          </div>
+          <div class="exp-org">IPSSI Paris Grande École Informatique</div>
+          <div class="exp-type">Projet étudiant</div>
+          <ul class="exp-list">
+            <li>Création d'un domaine Active Directory avec GPO (restrictions d'accès)</li>
+            <li>Déploiement de Zabbix sur Windows et Linux pour la supervision</li>
+            <li>Configuration d'un serveur HTTPS avec certificat SSL et redirection automatique</li>
+            <li>Virtualisation réseau NAT (VirtualBox) avec serveur FTP/FTPS sécurisé</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="etag">Active Directory</span><span class="etag">GPO</span>
+            <span class="etag">Zabbix</span><span class="etag">SSL/TLS</span><span class="etag">VirtualBox</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="main-sec">
+        <div class="main-title">Formation</div>
+        <div class="edu-item">
+          <div class="edu-dot">📡</div>
+          <div>
+            <div class="edu-year">Depuis Oct. 2024</div>
+            <div class="edu-name">BTS SIO option SISR</div>
+            <div class="edu-school">IPSSI Paris Grande École Informatique · En cours</div>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-dot">🎓</div>
+          <div>
+            <div class="edu-year">Sep. 2023 — Août 2024</div>
+            <div class="edu-name">Baccalauréat</div>
+            <div class="edu-school">Établissement Français Liberté</div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+</body>
+</html>

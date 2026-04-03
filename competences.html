@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tableau de Compétences BTS SIO SISR — Abdoulaye COULIBALY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent:  #7a4f2e;
+      --accent2: #c4883a;
+      --text:    #1c1206;
+      --muted:   #7a6650;
+      --light:   #faf6ef;
+      --bg2:     #f2e9d8;
+      --border:  #e4d5bc;
+      --border2: #cdb898;
+      --white:   #fffdf8;
+      --grad:    linear-gradient(135deg,#7a4f2e,#c4883a);
+    }
+    body { font-family: 'Inter',sans-serif; background: #ede0ca; color: var(--text); padding: 2rem; }
+
+    .print-bar {
+      max-width: 1100px; margin: 0 auto 1.5rem;
+      background: var(--white); border-radius: 14px; padding: 1rem 1.5rem;
+      box-shadow: 0 2px 12px rgba(122,79,46,.1);
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    }
+    .print-bar span { font-size: .88rem; font-weight: 600; color: var(--muted); }
+    .print-btns { display: flex; gap: .75rem; }
+    .pbtn { padding:.5rem 1.2rem; border-radius:8px; font-size:.85rem; font-weight:700; cursor:pointer; border:none; text-decoration:none; display:inline-flex; align-items:center; gap:.4rem; transition:opacity .2s; }
+    .pbtn:hover { opacity:.85; }
+    .pbtn-main { background: var(--grad); color:#fff; }
+    .pbtn-sec { background:transparent; border:1.5px solid var(--border2); color:var(--muted); }
+
+    .wrapper { max-width: 1100px; margin: 0 auto; }
+
+    /* DOC HEADER */
+    .doc-head {
+      background: var(--grad); color: #fff; border-radius: 20px 20px 0 0;
+      padding: 2.2rem 3rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem;
+    }
+    .doc-head h1 { font-size: 1.5rem; font-weight: 900; letter-spacing: -.03em; margin-bottom: .3rem; }
+    .doc-head h2 { font-size: .9rem; font-weight: 500; opacity: .9; font-family: 'JetBrains Mono',monospace; }
+    .doc-meta { text-align: right; font-size: .82rem; opacity: .85; display: flex; flex-direction: column; gap: .3rem; }
+
+    /* LEGEND */
+    .legend {
+      background: var(--white); padding: 1.1rem 3rem;
+      border-left: 1px solid var(--border); border-right: 1px solid var(--border);
+      display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+    }
+    .leg-title { font-size: .68rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); font-family: 'JetBrains Mono',monospace; flex-shrink: 0; }
+    .leg-items { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+    .leg-item { display: flex; align-items: center; gap: .4rem; font-size: .78rem; font-weight: 500; }
+    .leg-dot { width: 11px; height: 11px; border-radius: 3px; flex-shrink: 0; }
+    .src-items { display: flex; gap: .75rem; margin-left: auto; }
+    .src-demo { font-size: .73rem; padding: .18rem .55rem; border-radius: 4px; font-weight: 600; }
+
+    /* BLOCK */
+    .block { background: var(--white); border: 1px solid var(--border); border-top: none; }
+    .block:last-child { border-radius: 0 0 20px 20px; overflow: hidden; }
+    .block-head {
+      padding: 1.1rem 3rem; background: var(--light);
+      display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .block-num {
+      width: 34px; height: 34px; border-radius: 10px; flex-shrink: 0;
+      background: var(--grad); color: #fff; font-weight: 800; font-size: .85rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .block-head h3 { font-size: .95rem; font-weight: 800; }
+    .block-head p { font-size: .8rem; color: var(--muted); margin-top: .1rem; }
+
+    /* TABLE */
+    table { width: 100%; border-collapse: collapse; }
+    thead { background: var(--bg2); }
+    th {
+      padding: .7rem 1rem; text-align: left; font-size: .68rem; font-weight: 800;
+      color: var(--muted); letter-spacing: .12em; text-transform: uppercase;
+      border-bottom: 1px solid var(--border); font-family: 'JetBrains Mono',monospace;
+    }
+    th:first-child { padding-left: 3rem; width: 5%; }
+    th:nth-child(2) { width: 28%; }
+    th:nth-child(3) { width: 33%; }
+    th:nth-child(4) { width: 18%; }
+    th:last-child { width: 16%; }
+
+    td { padding: .85rem 1rem; border-bottom: 1px solid var(--border); font-size: .85rem; vertical-align: top; }
+    td:first-child { padding-left: 3rem; color: var(--muted2, #a08c72); font-weight: 700; font-family: 'JetBrains Mono',monospace; font-size: .78rem; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #faf6ef55; }
+
+    .comp-name { font-weight: 700; color: var(--text); margin-bottom: .2rem; }
+    .comp-detail { color: var(--muted); font-size: .8rem; line-height: 1.4; }
+    .src-tags { display: flex; flex-wrap: wrap; gap: .3rem; }
+    .src-tag { font-size: .7rem; padding: .17rem .52rem; border-radius: 4px; font-weight: 600; }
+    .src-cours  { background: #7a4f2e14; border: 1px solid #7a4f2e30; color: #7a4f2e; }
+    .src-stage  { background: #c4883a14; border: 1px solid #c4883a30; color: #9b6535; }
+    .src-projet { background: #9b653514; border: 1px solid #9b653530; color: #7a4f2e; }
+    .src-perso  { background: #6b7a2e14; border: 1px solid #6b7a2e30; color: #4a5520; }
+
+    .lv { display: inline-flex; align-items: center; gap: .35rem; padding: .28rem .65rem; border-radius: 999px; font-size: .76rem; font-weight: 700; }
+    .lv-na  { background: #ef444412; color: #dc2626; border: 1px solid #ef444430; }
+    .lv-ins { background: #f9731612; color: #ea6000; border: 1px solid #f9731630; }
+    .lv-fra { background: #d9770614; color: #b85c00; border: 1px solid #d9770630; }
+    .lv-sat { background: #16a34a14; color: #15803d; border: 1px solid #16a34a30; }
+    .lv-tgm { background: #7a4f2e14; color: #7a4f2e; border: 1px solid #7a4f2e30; }
+
+    /* BILAN */
+    .bilan { padding: 2rem 3rem; background: var(--light); border-top: 1px solid var(--border); }
+    .bilan-title { font-size: .68rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); font-family: 'JetBrains Mono',monospace; margin-bottom: 1.2rem; }
+    .bilan-grid { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .bilan-box { flex: 1; min-width: 150px; background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 1.1rem; text-align: center; }
+    .bilan-num { font-size: 2rem; font-weight: 900; }
+    .bilan-lbl { font-size: .78rem; color: var(--muted); margin-top: .2rem; }
+    .bilan-axes { flex: 2; min-width: 260px; background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 1.2rem; }
+    .bilan-axes-title { font-size: .75rem; font-weight: 700; color: var(--muted); margin-bottom: .7rem; }
+    .bilan-axes p { font-size: .84rem; color: var(--text); line-height: 1.7; }
+
+    .doc-footer {
+      background: var(--white); padding: 1.4rem 3rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+      border-top: 2px solid var(--border); font-size: .8rem; color: var(--muted);
+    }
+    .doc-footer strong { color: var(--text); }
+
+    @media print {
+      body { background: white; padding: 0; }
+      .print-bar { display: none; }
+      tr:hover td { background: transparent; }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+    @media (max-width: 700px) {
+      body { padding: .5rem; }
+      th:nth-child(3), td:nth-child(3) { display: none; }
+      .doc-head, .block-head, th:first-child, td:first-child, .legend, .bilan, .doc-footer { padding-left: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="print-bar">
+  <span>📊 Tableau de Compétences BTS SIO SISR — Abdoulaye COULIBALY</span>
+  <div class="print-btns">
+    <button class="pbtn pbtn-main" onclick="window.print()">🖨 Enregistrer en PDF</button>
+    <a class="pbtn pbtn-sec" href="index.html">← Portfolio</a>
+  </div>
+</div>
+
+<div class="wrapper">
+
+  <div class="doc-head">
+    <div>
+      <h1>Tableau de Compétences — BTS SIO</h1>
+      <h2>Option SISR · Solutions d'Infrastructure, Systèmes et Réseaux</h2>
+    </div>
+    <div class="doc-meta">
+      <span>👤 Abdoulaye COULIBALY</span>
+      <span>🎓 IPSSI Paris Grande École Informatique</span>
+      <span>📅 Promotion 2024–2026</span>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span class="leg-title">Niveaux :</span>
+    <div class="leg-items">
+      <div class="leg-item"><span class="leg-dot" style="background:#dc2626"></span>Non acquis</div>
+      <div class="leg-item"><span class="leg-dot" style="background:#ea6000"></span>Insuffisant</div>
+      <div class="leg-item"><span class="leg-dot" style="background:#b85c00"></span>Maîtrise fragile</div>
+      <div class="leg-item"><span class="leg-dot" style="background:#15803d"></span>Satisfaisante</div>
+      <div class="leg-item"><span class="leg-dot" style="background:#7a4f2e"></span>Très bonne</div>
+    </div>
+    <div class="src-items">
+      <span class="src-tag src-cours">Cours</span>
+      <span class="src-tag src-stage">Stage</span>
+      <span class="src-tag src-projet">Projet</span>
+      <span class="src-tag src-perso">Perso</span>
+    </div>
+  </div>
+
+  <!-- BLOC 1 -->
+  <div class="block">
+    <div class="block-head">
+      <div class="block-num">B1</div>
+      <div>
+        <h3>Support et mise à disposition de services informatiques</h3>
+        <p>Compétences communes aux options SLAM et SISR</p>
+      </div>
+    </div>
+    <table>
+      <thead><tr><th>Réf.</th><th>Compétence</th><th>Situation / Réalisation</th><th>Sources</th><th>Niveau</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>B1.1</td>
+          <td><div class="comp-name">Gestion du patrimoine informatique</div><div class="comp-detail">Recenser les ressources, exploiter des référentiels, assurer la mise à jour</div></td>
+          <td>Gestion et mise à jour du parc informatique chez METRO FRANCE via outils ITSM. Inventaire matériel et logiciel.</td>
+          <td><div class="src-tags"><span class="src-tag src-stage">Stage METRO</span><span class="src-tag src-cours">Cours SI</span></div></td>
+          <td><span class="lv lv-sat">● Satisfaisant</span></td>
+        </tr>
+        <tr>
+          <td>B1.2</td>
+          <td><div class="comp-name">Réponse aux incidents et aux demandes</div><div class="comp-detail">Traiter les tickets, résoudre les incidents N1/N2, escalader si nécessaire</div></td>
+          <td>Résolution d'incidents N1 chez METRO FRANCE (postes, périphériques, accès). Escalade vers équipes N3 pour les cas complexes.</td>
+          <td><div class="src-tags"><span class="src-tag src-stage">Stage METRO</span></div></td>
+          <td><span class="lv lv-sat">● Satisfaisant</span></td>
+        </tr>
+        <tr>
+          <td>B1.3</td>
+          <td><div class="comp-name">Développement de la présence en ligne</div><div class="comp-detail">Participer à la valorisation de l'image numérique de l'organisation</div></td>
+          <td>Création de ce portfolio personnel (HTML/CSS/React). Maintenance de la page intranet à l'IFFP.</td>
+          <td><div class="src-tags"><span class="src-tag src-perso">Perso</span><span class="src-tag src-cours">Cours Dev</span></div></td>
+          <td><span class="lv lv-fra">● Maîtrise fragile</span></td>
+        </tr>
+        <tr>
+          <td>B1.4</td>
+          <td><div class="comp-name">Travail en mode projet</div><div class="comp-detail">Planifier, coordonner et rendre compte d'un projet informatique</div></td>
+          <td>Projets étudiants IPSSI planifiés et présentés (AD, Zabbix, serveur web). Documentation des étapes et résultats.</td>
+          <td><div class="src-tags"><span class="src-tag src-projet">Projet IPSSI</span><span class="src-tag src-cours">Cours Projet</span></div></td>
+          <td><span class="lv lv-sat">● Satisfaisant</span></td>
+        </tr>
+        <tr>
+          <td>B1.5</td>
+          <td><div class="comp-name">Mise à disposition d'un service informatique</div><div class="comp-detail">Déployer, tester et valider un service avant mise en production</div></td>
+          <td>Déploiement et tests du serveur Zabbix. Installation et validation du serveur web HTTPS en environnement virtuel.</td>
+          <td><div class="src-tags"><span class="src-tag src-projet">Projet IPSSI</span><span class="src-tag src-stage">Stage IFFP</span></div></td>
+          <td><span class="lv lv-sat">● Satisfaisant</span></td>
+        </tr>
+        <tr>
+          <td>B1.6</td>
+          <td><div class="comp-name">Organisation du développement professionnel</div><div class="comp-detail">Veille technologique, autoformation, développement de compétences</div></td>
+          <td>Pratique CTF sur TryHackMe et RootMe. Homelab personnel. Veille techno régulière (cybersécurité, réseau, systèmes).</td>
+          <td><div class="src-tags"><span class="src-tag src-perso">Perso</span><span class="src-tag src-cours">Cours</span></div></td>
+          <td><span class="lv lv-sat">● Satisfaisant</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- BLOC 2 -->
+  <div class="block">
+    <div class="block-head">
+      <div class="block-num">B2</div>
+      <div>
+        <h3>Administration des systèmes et des réseaux</h3>
+        <p>Compétences spécifiques à l'option SISR</p>
+      </div>
+    </div>
+    <table>
+      <thead><tr><th>Réf.</th><th>Compétence</th><th>Situation / Réalisation</th><th>Sources</th><th>Niveau</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>B2.1</td>
+          <td><div class="comp-name">Conception d'une solution d'infrastructure réseau</div><div class="comp-detail">Modéliser, dimensionner et schématiser une infrastructure réseau</div></td>
+          <td>Mise en place de l'infrastructure réseau chez IFFP (schéma, adressage IP, plan de câblage). Configuration switchs et routage.</td>
+          <td><div class="src-tags"><span class="src-tag src-stage">Stage IFFP</span><span class="src-tag src-cours">Cours Réseau</span></div></td>
+          <td><span class="lv lv-sat">● Satisfaisant</span></td>
+        </tr>
+        <tr>
+          <td>B2.2</td>
+          <td><div class="comp-name">Installation, test et déploiement d'une infrastructure</div><div class="comp-detail">Installer et configurer les éléments d'une infrastructure, tester et valider</div></td>
+          <td>Déploiement AD, Zabbix, serveur HTTPS (IPSSI). Installation et sécurisation de serveurs VPS (IFFP). Réseau NAT VirtualBox.</td>
+          <td><div class="src-tags"><span class="src-tag src-projet">Projet IPSSI</span><span class="src-tag src-stage">Stage IFFP</span></div></td>
+          <td><span class="lv lv-sat">● Satisfaisant</span></td>
+        </tr>
+        <tr>
+          <td>B2.3</td>
+          <td><div class="comp-name">Exploitation et supervision d'une infrastructure</div><div class="comp-detail">Superviser l'infrastructure, analyser les journaux, résoudre les dysfonctionnements</div></td>
+          <td>Installation et configuration de Zabbix sur plusieurs OS (Windows/Linux) avec agents, triggers et dashboards de monitoring.</td>
+          <td><div class="src-tags"><span class="src-tag src-projet">Projet IPSSI</span><span class="src-tag src-cours">TP Supervision</span></div></td>
+          <td><span class="lv lv-fra">● Maîtrise fragile</span></td>
+        </tr>
+        <tr>
+          <td>B2.4</td>
+          <td><div class="comp-name">Sécurisation des équipements et des usages</div><div class="comp-detail">Mettre en œuvre des mesures de sécurité, gérer les droits et accès utilisateurs</div></td>
+          <td>Configuration GPO Active Directory (restrictions, sécurité). Sécurisation VPS contre DDoS. Mise en place Firewall et VPN.</td>
+          <td><div class="src-tags"><span class="src-tag src-projet">Projet IPSSI</span><span class="src-tag src-stage">Stage IFFP</span></div></td>
+          <td><span class="lv lv-sat">● Satisfaisant</span></td>
+        </tr>
+        <tr>
+          <td>B2.5</td>
+          <td><div class="comp-name">Disponibilité, intégrité et confidentialité des données</div><div class="comp-detail">Sauvegarder et restaurer les données, assurer la redondance</div></td>
+          <td>Implémentation d'une solution de sauvegarde cloud à l'IFFP. Gestion des droits d'accès AD pour garantir la confidentialité.</td>
+          <td><div class="src-tags"><span class="src-tag src-stage">Stage IFFP</span><span class="src-tag src-cours">Cours SI</span></div></td>
+          <td><span class="lv lv-fra">● Maîtrise fragile</span></td>
+        </tr>
+        <tr>
+          <td>B2.6</td>
+          <td><div class="comp-name">Organisation de la continuité d'un service informatique</div><div class="comp-detail">Participer à la rédaction et à la mise en œuvre d'un plan de continuité</div></td>
+          <td>Notions abordées en cours (PRA/PCA). Non encore mis en pratique en entreprise.</td>
+          <td><div class="src-tags"><span class="src-tag src-cours">Cours SGSI</span></div></td>
+          <td><span class="lv lv-ins">● Insuffisant</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- BLOC 3 -->
+  <div class="block" style="border-radius:0 0 20px 20px;overflow:hidden;">
+    <div class="block-head">
+      <div class="block-num">B3</div>
+      <div>
+        <h3>Cybersécurité des services informatiques</h3>
+        <p>Protection des données, des équipements et des usages</p>
+      </div>
+    </div>
+    <table>
+      <thead><tr><th>Réf.</th><th>Compétence</th><th>Situation / Réalisation</th><th>Sources</th><th>Niveau</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>B3.1</td>
+          <td><div class="comp-name">Protection des données à caractère personnel</div><div class="comp-detail">Appliquer la réglementation RGPD, sensibiliser les utilisateurs</div></td>
+          <td>Sensibilisation aux bonnes pratiques lors du support chez METRO. Notions RGPD abordées en cours.</td>
+          <td><div class="src-tags"><span class="src-tag src-cours">Cours Droit</span><span class="src-tag src-stage">Stage METRO</span></div></td>
+          <td><span class="lv lv-fra">● Maîtrise fragile</span></td>
+        </tr>
+        <tr>
+          <td>B3.2</td>
+          <td><div class="comp-name">Préservation de l'identité numérique</div><div class="comp-detail">Mettre en place des mécanismes d'authentification, gérer les identités</div></td>
+          <td>Déploiement Active Directory (gestion des identités, politiques de mots de passe via GPO). Configuration VPN SSL à l'IFFP.</td>
+          <td><div class="src-tags"><span class="src-tag src-projet">Projet IPSSI</span><span class="src-tag src-stage">Stage IFFP</span></div></td>
+          <td><span class="lv lv-sat">● Satisfaisant</span></td>
+        </tr>
+        <tr>
+          <td>B3.3</td>
+          <td><div class="comp-name">Sécurisation des équipements et des usages</div><div class="comp-detail">Identifier les vulnérabilités, appliquer des correctifs, surveiller les menaces</div></td>
+          <td>Pratique CTF sur TryHackMe et RootMe (reconnaissance, exploitation basique). Sécurisation VPS (DDoS) à l'IFFP. Configuration SSL/TLS.</td>
+          <td><div class="src-tags"><span class="src-tag src-perso">TryHackMe</span><span class="src-tag src-stage">Stage IFFP</span></div></td>
+          <td><span class="lv lv-fra">● Maîtrise fragile</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- BILAN -->
+    <div class="bilan">
+      <div class="bilan-title">Bilan Global — 15 compétences évaluées</div>
+      <div class="bilan-grid">
+        <div class="bilan-box">
+          <div class="bilan-num" style="color:#15803d">7</div>
+          <div class="bilan-lbl">Maîtrise satisfaisante</div>
+        </div>
+        <div class="bilan-box">
+          <div class="bilan-num" style="color:#b85c00">5</div>
+          <div class="bilan-lbl">Maîtrise fragile</div>
+        </div>
+        <div class="bilan-box">
+          <div class="bilan-num" style="color:#ea6000">2</div>
+          <div class="bilan-lbl">Insuffisant</div>
+        </div>
+        <div class="bilan-box">
+          <div class="bilan-num" style="color:#dc2626">1</div>
+          <div class="bilan-lbl">Non acquis</div>
+        </div>
+        <div class="bilan-axes">
+          <div class="bilan-axes-title">Axes de progression prioritaires</div>
+          <p>
+            → <strong>B2.6</strong> — Approfondir les notions de PRA/PCA lors du stage IFFP<br/>
+            → <strong>B2.3</strong> — Renforcer la supervision (SNMP, Grafana, alerting)<br/>
+            → <strong>B3.1</strong> — Approfondir le RGPD et la conformité des données<br/>
+            → <strong>B3.3</strong> — Progresser en cybersécurité offensive (CTF, certif)
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="doc-footer">
+      <span>Tableau de compétences BTS SIO SISR · <strong>Abdoulaye COULIBALY</strong> · Promo 2024–2026</span>
+      <span>IPSSI Paris · <strong>Ctrl+P pour enregistrer en PDF</strong></span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Abdoulaye COULIBALY — BTS SIO SISR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #faf6ef;
+      --bg2:     #f2e9d8;
+      --bg3:     #ede0ca;
+      --card:    #fffdf8;
+      --card2:   #fdf5e8;
+      --border:  #e4d5bc;
+      --border2: #cdb898;
+      --accent:  #7a4f2e;
+      --accent2: #c4883a;
+      --accent3: #9b6535;
+      --text:    #1c1206;
+      --text2:   #2e1e0a;
+      --muted:   #7a6650;
+      --muted2:  #a08c72;
+      --grad:    linear-gradient(135deg, #7a4f2e, #c4883a);
+      --grad2:   linear-gradient(135deg, #9b6535, #d4a050);
+      --shadow:  0 4px 28px rgba(122,79,46,.09);
+      --shadow2: 0 12px 48px rgba(122,79,46,.14);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent2); border-radius: 3px; }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 6%;
+      background: rgba(250,246,239,.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-size: 1.3rem; font-weight: 900; letter-spacing: -.03em;
+      background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: .85rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-badge {
+      font-size: .72rem; padding: .28rem .85rem; border-radius: 999px;
+      background: linear-gradient(135deg,#7a4f2e18,#c4883a18);
+      border: 1px solid var(--border2); color: var(--accent3); font-weight: 700;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 0 6%; padding-top: 80px; position: relative; overflow: hidden;
+    }
+    .hero-orb {
+      position: absolute; border-radius: 50%; filter: blur(110px); pointer-events: none; opacity: .18;
+    }
+    .orb1 { width: 600px; height: 600px; background: #c4883a; top: -150px; right: -100px; }
+    .orb2 { width: 350px; height: 350px; background: #7a4f2e; bottom: -80px; left: -80px; }
+    .hero-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; gap: 4rem; position: relative; z-index: 1;
+    }
+    .hero-text { max-width: 640px; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--card); border: 1px solid var(--border2);
+      padding: .35rem .95rem; border-radius: 999px;
+      font-size: .77rem; color: var(--muted); font-weight: 600; margin-bottom: 1.8rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .hero-tag .dot { width: 7px; height: 7px; background: #4ade80; border-radius: 50%; animation: blink 2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+    .hero h1 {
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem); font-weight: 900;
+      line-height: 1.08; letter-spacing: -.04em; margin-bottom: 1rem;
+    }
+    .hero h1 .name {
+      background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      display: block; min-height: 1.2em;
+    }
+    .cursor {
+      display: inline-block;
+      background: var(--grad2); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      animation: blink-cursor .7s step-end infinite;
+      font-weight: 300;
+    }
+    @keyframes blink-cursor { 0%,100%{opacity:1} 50%{opacity:0} }
+    .hero-role {
+      font-family: 'JetBrains Mono', monospace; font-size: .92rem;
+      color: var(--accent2); font-weight: 600; margin-bottom: 1.2rem;
+      letter-spacing: .02em;
+    }
+    .hero p { color: var(--muted); font-size: .95rem; line-height: 1.8; max-width: 520px; margin-bottom: 2.5rem; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-fill {
+      padding: .8rem 1.8rem; border-radius: 12px; border: none; cursor: pointer;
+      background: var(--grad); color: #fff; font-weight: 700; font-size: .9rem;
+      text-decoration: none; display: inline-block; transition: transform .2s, box-shadow .2s;
+    }
+    .btn-fill:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(122,79,46,.35); }
+    .btn-outline {
+      padding: .8rem 1.8rem; border-radius: 12px;
+      border: 1.5px solid var(--border2); background: transparent;
+      color: var(--text2); font-weight: 600; font-size: .9rem;
+      text-decoration: none; display: inline-block; transition: all .2s; cursor: pointer;
+    }
+    .btn-outline:hover { background: var(--bg3); border-color: var(--accent); }
+
+    /* hero stats */
+    .hero-stats { display: flex; gap: 2.5rem; margin-top: 2.8rem; padding-top: 2.2rem; border-top: 1px solid var(--border); }
+    .stat-num { font-size: 2rem; font-weight: 900; background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .stat-lbl { font-size: .78rem; color: var(--muted); font-weight: 500; margin-top: .15rem; }
+
+    /* hero card */
+    .hero-card {
+      flex-shrink: 0; width: 300px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 28px; padding: 2.2rem; box-shadow: var(--shadow2);
+    }
+    .avatar {
+      width: 88px; height: 88px; border-radius: 50%;
+      background: var(--grad); display: flex; align-items: center; justify-content: center;
+      font-size: 2.4rem; margin: 0 auto 1.4rem;
+      border: 3px solid var(--border);
+    }
+    .hcard-name { text-align: center; font-size: 1.05rem; font-weight: 800; margin-bottom: .2rem; }
+    .hcard-role { text-align: center; font-size: .8rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.4; }
+    .hcard-divider { height: 1px; background: var(--border); margin-bottom: 1.3rem; }
+    .hcard-row { display: flex; align-items: center; gap: .65rem; font-size: .83rem; color: var(--muted2); margin-bottom: .65rem; }
+    .hcard-row .ico { font-size: .95rem; }
+    .hcard-row strong { color: var(--text2); }
+    .hcard-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid var(--border); }
+    .q-tag {
+      font-size: .72rem; padding: .25rem .65rem; border-radius: 999px;
+      background: linear-gradient(135deg,#7a4f2e12,#c4883a12);
+      border: 1px solid var(--border); color: var(--accent3); font-weight: 600;
+    }
+
+    /* scroll hint */
+    .hero-scroll {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: .4rem; z-index: 1;
+    }
+    .scroll-line { width: 1px; height: 44px; background: linear-gradient(to bottom, var(--accent2), transparent); animation: grow 2s infinite; }
+    @keyframes grow { 0%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 51%{transform:scaleY(1);transform-origin:bottom} 100%{transform:scaleY(0);transform-origin:bottom} }
+    .scroll-txt { font-size: .65rem; color: var(--muted2); letter-spacing: .12em; font-family: 'JetBrains Mono',monospace; }
+
+    /* ── SECTION COMMONS ── */
+    .section { padding: 7rem 6%; }
+    .section-alt { background: var(--bg2); }
+    .section-alt2 { background: var(--bg3); }
+    .sec-label {
+      font-size: .7rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--accent2); margin-bottom: .55rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .sec-title { font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 800; letter-spacing: -.03em; margin-bottom: .5rem; }
+    .sec-sub { color: var(--muted); font-size: .93rem; margin-bottom: 3.5rem; }
+    .center { text-align: center; }
+
+    /* ── À PROPOS ── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .about-text p { color: var(--muted); font-size: .95rem; line-height: 1.85; margin-bottom: 1.5rem; }
+    .about-qualities { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.5rem; }
+    .qual {
+      font-size: .82rem; padding: .35rem .9rem; border-radius: 999px;
+      background: var(--card); border: 1.5px solid var(--border2); color: var(--accent3);
+      font-weight: 600; transition: all .2s;
+    }
+    .qual:hover { background: var(--bg3); }
+    .about-right { display: flex; flex-direction: column; gap: 1rem; }
+    .info-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 1.5rem;
+      box-shadow: var(--shadow); transition: border-color .3s;
+    }
+    .info-card:hover { border-color: var(--border2); }
+    .info-card-title { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted2); margin-bottom: 1rem; font-family: 'JetBrains Mono',monospace; }
+    .info-row { display: flex; align-items: center; gap: .65rem; font-size: .88rem; color: var(--muted2); margin-bottom: .55rem; }
+    .info-row:last-child { margin-bottom: 0; }
+    .info-row .i { font-size: 1rem; }
+    .info-row strong { color: var(--text2); font-weight: 600; }
+    .lang-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: .7rem; }
+    .lang-row:last-child { margin-bottom: 0; }
+    .lang-name { font-size: .88rem; font-weight: 600; color: var(--text2); }
+    .lang-badge {
+      font-size: .72rem; padding: .2rem .6rem; border-radius: 999px;
+      background: linear-gradient(135deg,#7a4f2e18,#c4883a18);
+      border: 1px solid var(--border2); color: var(--accent3); font-weight: 700;
+    }
+
+    /* ── PARCOURS ── */
+    .timeline { position: relative; max-width: 860px; margin: 0 auto; }
+    .timeline::before {
+      content: ''; position: absolute; left: 22px; top: 0; bottom: 0;
+      width: 2px; background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+    }
+    .tl-item { display: flex; gap: 2rem; margin-bottom: 2.5rem; position: relative; }
+    .tl-dot {
+      flex-shrink: 0; width: 46px; height: 46px; border-radius: 50%;
+      border: 2px solid var(--accent2); background: var(--card);
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem; z-index: 1;
+      box-shadow: 0 0 0 4px var(--bg2);
+    }
+    .tl-card {
+      flex: 1; background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 1.5rem; box-shadow: var(--shadow);
+      transition: border-color .3s, transform .3s;
+    }
+    .tl-card:hover { border-color: var(--border2); transform: translateX(4px); }
+    .tl-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: .3rem; flex-wrap: wrap; gap: .5rem; }
+    .tl-date {
+      font-size: .72rem; font-weight: 700; padding: .22rem .7rem; border-radius: 999px;
+      background: var(--grad); color: #fff; font-family: 'JetBrains Mono',monospace;
+    }
+    .tl-type {
+      font-size: .72rem; font-weight: 600; padding: .22rem .65rem; border-radius: 999px;
+      border: 1px solid var(--border2); color: var(--muted2); background: var(--bg2);
+    }
+    .tl-title { font-size: 1.05rem; font-weight: 800; margin-bottom: .2rem; color: var(--text); }
+    .tl-org { font-size: .88rem; color: var(--accent2); font-weight: 600; margin-bottom: .8rem; }
+    .tl-missions { list-style: none; }
+    .tl-missions li {
+      font-size: .86rem; color: var(--muted); padding: .3rem 0 .3rem 1rem;
+      border-bottom: 1px solid var(--border); position: relative; line-height: 1.5;
+    }
+    .tl-missions li:last-child { border-bottom: none; }
+    .tl-missions li::before { content: '▸'; position: absolute; left: 0; color: var(--accent2); }
+    .tl-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
+    .tl-tag {
+      font-size: .73rem; padding: .22rem .65rem; border-radius: 999px;
+      background: linear-gradient(135deg,#7a4f2e0d,#c4883a0d);
+      border: 1px solid var(--border); color: var(--accent3); font-weight: 500;
+    }
+
+    /* ── COMPÉTENCES ── */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.5rem; }
+    .skill-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 22px; padding: 1.8rem; box-shadow: var(--shadow);
+      transition: border-color .3s, transform .3s;
+    }
+    .skill-card:hover { border-color: var(--accent2); transform: translateY(-4px); box-shadow: var(--shadow2); }
+    .skill-icon {
+      width: 50px; height: 50px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1rem;
+    }
+    .skill-card h3 { font-size: 1rem; font-weight: 800; margin-bottom: .35rem; }
+    .skill-card > p { color: var(--muted); font-size: .85rem; line-height: 1.6; margin-bottom: 1.3rem; }
+    .slist { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+    .srow { display: flex; align-items: center; justify-content: space-between; }
+    .sname { font-size: .84rem; color: var(--muted2); font-weight: 500; }
+    .sbar-wrap { width: 90px; height: 4px; background: var(--bg3); border-radius: 999px; overflow: hidden; }
+    .sbar { height: 100%; border-radius: 999px; background: var(--grad); }
+
+    /* ── ÉPREUVES BTS ── */
+    .epreuves-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .ep-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 22px; padding: 2rem; box-shadow: var(--shadow);
+      transition: border-color .3s, transform .3s;
+    }
+    .ep-card:hover { border-color: var(--accent2); transform: translateY(-4px); }
+    .ep-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.2rem; }
+    .ep-ref {
+      font-family: 'JetBrains Mono', monospace; font-size: .75rem; font-weight: 700;
+      padding: .3rem .7rem; border-radius: 8px;
+      background: var(--grad); color: #fff;
+    }
+    .ep-coeff {
+      font-size: .75rem; font-weight: 700; color: var(--accent3);
+      background: linear-gradient(135deg,#7a4f2e12,#c4883a12);
+      border: 1px solid var(--border2); padding: .25rem .65rem; border-radius: 8px;
+    }
+    .ep-card h3 { font-size: .98rem; font-weight: 800; margin-bottom: .5rem; line-height: 1.4; }
+    .ep-card p { color: var(--muted); font-size: .85rem; line-height: 1.6; margin-bottom: 1.2rem; }
+    .ep-meta { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .ep-pill {
+      font-size: .73rem; padding: .22rem .65rem; border-radius: 999px;
+      background: var(--bg2); border: 1px solid var(--border); color: var(--muted2); font-weight: 500;
+    }
+
+    /* ── PROJETS ── */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .proj-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 24px; overflow: hidden; box-shadow: var(--shadow);
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .proj-card:hover { transform: translateY(-6px); box-shadow: var(--shadow2); border-color: var(--border2); }
+    .proj-thumb {
+      height: 170px; display: flex; align-items: center; justify-content: center;
+      font-size: 4.5rem; position: relative; overflow: hidden;
+    }
+    .proj-thumb-overlay {
+      position: absolute; inset: 0; opacity: .08;
+      background: repeating-linear-gradient(45deg, var(--accent) 0, var(--accent) 1px, transparent 0, transparent 50%);
+      background-size: 12px 12px;
+    }
+    .proj-body { padding: 1.6rem; }
+    .proj-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: .8rem; }
+    .proj-cat { font-size: .72rem; font-weight: 700; color: var(--muted2); letter-spacing: .1em; text-transform: uppercase; font-family: 'JetBrains Mono',monospace; }
+    .proj-body h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: .5rem; }
+    .proj-body p { color: var(--muted); font-size: .87rem; line-height: 1.6; margin-bottom: 1.2rem; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .ptag { font-size: .72rem; padding: .22rem .6rem; border-radius: 999px; background: linear-gradient(135deg,#7a4f2e0d,#c4883a0d); border: 1px solid var(--border); color: var(--accent3); font-weight: 500; }
+
+    /* ── VEILLE ── */
+    .veille-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .veille-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 24px; overflow: hidden; box-shadow: var(--shadow);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .veille-card:hover { transform: translateY(-4px); box-shadow: var(--shadow2); }
+    .veille-thumb { height: 130px; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; }
+    .veille-body { padding: 1.5rem; }
+    .veille-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: .7rem; }
+    .veille-cat { font-size: .72rem; color: var(--accent2); font-weight: 700; text-transform: uppercase; letter-spacing: .1em; font-family: 'JetBrains Mono',monospace; }
+    .veille-date { font-size: .75rem; color: var(--muted2); }
+    .veille-card h3 { font-size: .98rem; font-weight: 800; margin-bottom: .4rem; line-height: 1.4; }
+    .veille-card p { color: var(--muted); font-size: .85rem; line-height: 1.6; margin-bottom: 1rem; }
+    .veille-link {
+      font-size: .82rem; font-weight: 700; color: var(--accent3); text-decoration: none;
+      display: inline-flex; align-items: center; gap: .3rem; transition: gap .2s;
+    }
+    .veille-link:hover { gap: .6rem; }
+
+    /* ── CONTACT ── */
+    .contact-box { max-width: 600px; margin: 0 auto; text-align: center; }
+    .contact-email {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: 'JetBrains Mono', monospace; font-size: .9rem;
+      color: var(--accent); border-bottom: 2px solid var(--border2); padding-bottom: .2rem;
+      text-decoration: none; transition: color .2s;
+    }
+    .contact-email:hover { color: var(--accent2); }
+    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 2.5rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: .6rem;
+      padding: .75rem 1.4rem; border-radius: 14px;
+      border: 1.5px solid var(--border); background: var(--card);
+      color: var(--text2); text-decoration: none; font-weight: 600; font-size: .88rem;
+      transition: border-color .2s, transform .2s, box-shadow .2s; box-shadow: var(--shadow);
+    }
+    .contact-link:hover { border-color: var(--accent2); transform: translateY(-3px); box-shadow: var(--shadow2); }
+    .contact-link svg { width: 17px; height: 17px; }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 2rem 6%; border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: .8rem; color: var(--muted2); flex-wrap: wrap; gap: 1rem;
+    }
+
+    @media (max-width: 960px) {
+      .hero-card { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .nav-links, .nav-badge { display: none; }
+      .section { padding: 5rem 5%; }
+      .hero { padding: 0 5%; padding-top: 80px; }
+      .hero-stats { gap: 1.5rem; }
+      .footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState } = React;
+
+/* ── DATA ── */
+const PARCOURS = [
+  {
+    icon: "🏢", date: "Nov. 2025 — Fév. 2026", type: "Emploi",
+    title: "Technicien Support Informatique",
+    org: "METRO FRANCE",
+    missions: [
+      "Configuration et déploiement du matériel informatique",
+      "Accueil utilisateurs, analyse des besoins et résolution d'incidents N1",
+      "Gestion et mise à jour du parc informatique via outils ITSM",
+      "Mise à jour de la documentation et base de connaissances",
+      "Installation et préparation des expéditions de matériel",
+    ],
+    tags: ["Support N1", "ITSM", "Parc informatique", "Documentation", "Windows"],
+  },
+  {
+    icon: "🏛️", date: "Mai 2025 — Juil. 2025", type: "Stage",
+    title: "Administrateur Systèmes & Réseaux",
+    org: "IFFP (Institut de Formation des Formateurs Professionnels)",
+    missions: [
+      "Déploiement d'un annuaire Active Directory via l'API Google",
+      "Installation, configuration et sécurisation de serveurs VPS (protection DDoS)",
+      "Mise en place de l'infrastructure réseau : switchs, câblage, DNS, routage local",
+      "Implémentation d'une solution de sauvegarde cloud et gestion VoIP",
+      "Administration de la téléphonie d'entreprise via l'interface Keyyo",
+    ],
+    tags: ["Active Directory", "VPS", "VoIP", "DNS", "Réseau", "Sauvegarde cloud"],
+  },
+  {
+    icon: "🎓", date: "Depuis Oct. 2024", type: "Projet étudiant",
+    title: "Technicien Système & Réseaux",
+    org: "IPSSI Paris Grande École Informatique",
+    missions: [
+      "Création d'un domaine Active Directory avec GPO (restrictions d'accès, config systèmes)",
+      "Mise en place et installation de Zabbix sur différents systèmes d'exploitation",
+      "Mise en relation par NAT de différentes machines virtuelles",
+      "Configuration d'un serveur web HTTP/HTTPS avec certificat SSL",
+    ],
+    tags: ["Active Directory", "GPO", "Zabbix", "VirtualBox", "SSL/TLS", "NAT"],
+  },
+  {
+    icon: "📚", date: "Depuis Oct. 2024", type: "Formation",
+    title: "BTS SIO option SISR",
+    org: "IPSSI Paris Grande École Informatique",
+    missions: [
+      "Solutions d'Infrastructure, Systèmes et Réseaux",
+      "Administration Windows Server, Linux, Active Directory",
+      "Réseaux Cisco, sécurité, virtualisation, supervision",
+      "Rythme d'alternance : 1 semaine école / 1 semaine entreprise",
+    ],
+    tags: ["BTS SIO", "SISR", "En cours"],
+  },
+  {
+    icon: "🏫", date: "Sep. 2023 — Août 2024", type: "Diplôme",
+    title: "Baccalauréat",
+    org: "Établissement Français Liberté",
+    missions: ["Obtention du Baccalauréat"],
+    tags: ["Baccalauréat", "2024"],
+  },
+];
+
+const SKILLS = [
+  {
+    icon: "🌐", color: "#c4883a18", title: "Systèmes & Réseaux",
+    desc: "Administration et configuration d'infrastructures réseau.",
+    items: [
+      { n: "Cisco / Switching", v: 75 }, { n: "DNS / DHCP / VPN", v: 80 },
+      { n: "Windows Server / AD", v: 78 }, { n: "Firewall / Sécurité", v: 70 },
+    ],
+  },
+  {
+    icon: "🖥️", color: "#7a4f2e18", title: "Systèmes Linux",
+    desc: "Administration des distributions Linux professionnelles.",
+    items: [
+      { n: "Ubuntu / Debian", v: 75 }, { n: "Kali Linux", v: 65 },
+      { n: "Zabbix / Supervision", v: 70 }, { n: "Bash / Scripts", v: 60 },
+    ],
+  },
+  {
+    icon: "☁️", color: "#9b653518", title: "Virtualisation",
+    desc: "Environnements virtualisés pour l'infra et les tests.",
+    items: [
+      { n: "VirtualBox", v: 80 }, { n: "VMware / Hyper-V", v: 65 },
+      { n: "VPS / Cloud", v: 70 }, { n: "NAT / Réseaux virtuels", v: 72 },
+    ],
+  },
+  {
+    icon: "💻", color: "#c4883a14", title: "Développement & BDD",
+    desc: "Web, scripting et gestion de bases de données.",
+    items: [
+      { n: "HTML5 / CSS3 / JS", v: 75 }, { n: "Python", v: 65 },
+      { n: "MySQL / Oracle / SQL", v: 70 }, { n: "NodeJS / Java", v: 55 },
+    ],
+  },
+  {
+    icon: "🔒", color: "#7a4f2e14", title: "Cybersécurité",
+    desc: "Pratique CTF et sécurisation des infrastructures.",
+    items: [
+      { n: "SSL/TLS", v: 72 }, { n: "TryHackMe / RootMe", v: 65 },
+      { n: "GPO Sécurité", v: 70 }, { n: "Hardening OS", v: 60 },
+    ],
+  },
+  {
+    icon: "🛠️", color: "#9b653512", title: "Outils & DevOps",
+    desc: "Environnements de développement et collaboration.",
+    items: [
+      { n: "Git / GitHub", v: 80 }, { n: "Visual Studio / Cursor", v: 85 },
+      { n: "Microsoft Teams / 365", v: 82 }, { n: "GLPI / ITSM", v: 68 },
+    ],
+  },
+];
+
+const EPREUVES = [
+  {
+    ref: "E4", coeff: "Coeff. 4",
+    title: "Support et mise à disposition de services informatiques",
+    desc: "Gestion du patrimoine informatique, réponse aux incidents, travail en mode projet, mise à disposition de services. Épreuve commune aux options SLAM et SISR.",
+    pills: ["Écrit 4h", "Dossier professionnel", "Coeff. 4"],
+  },
+  {
+    ref: "E5", coeff: "Coeff. 4",
+    title: "Administration des systèmes et des réseaux",
+    desc: "Conception, déploiement et exploitation d'infrastructures réseau. Sécurisation des équipements, supervision, haute disponibilité et continuité de service.",
+    pills: ["Écrit 4h", "SISR spécifique", "Coeff. 4"],
+  },
+  {
+    ref: "E6", coeff: "Coeff. 2",
+    title: "Cybersécurité des services informatiques",
+    desc: "Protection des données, préservation de l'identité numérique, sécurisation des équipements et des usages. RGPD et bonnes pratiques de sécurité.",
+    pills: ["Écrit 2h", "QCM + Réponses courtes", "Coeff. 2"],
+  },
+];
+
+const PROJECTS = [
+  {
+    emoji: "🗄️", grad: "linear-gradient(135deg,#f2e9d8,#e8d8c0)",
+    cat: "Système", title: "Domaine Active Directory",
+    desc: "Création d'un domaine AD complet avec configuration GPO : restrictions d'accès, politiques systèmes, gestion des utilisateurs et groupes de sécurité.",
+    tags: ["Windows Server", "Active Directory", "GPO", "DNS"],
+  },
+  {
+    emoji: "📡", grad: "linear-gradient(135deg,#e8d8c0,#ddc8a8)",
+    cat: "Supervision", title: "Infrastructure Zabbix",
+    desc: "Installation et configuration de Zabbix sur Windows et Linux. Création d'agents, déclencheurs d'alertes et tableaux de bord de supervision.",
+    tags: ["Zabbix", "Ubuntu", "Windows", "SNMP"],
+  },
+  {
+    emoji: "🔐", grad: "linear-gradient(135deg,#ddc8a8,#d4bc90)",
+    cat: "Sécurité", title: "Serveur Web Sécurisé HTTPS",
+    desc: "Configuration d'un serveur web avec certificat SSL, redirection automatique HTTP→HTTPS et durcissement de la configuration Apache.",
+    tags: ["Apache", "SSL/TLS", "HTTPS", "Linux"],
+  },
+  {
+    emoji: "🖧", grad: "linear-gradient(135deg,#d4bc90,#c8b078)",
+    cat: "Réseau", title: "Virtualisation Réseau NAT",
+    desc: "Mise en réseau de machines virtuelles via NAT sous VirtualBox. Configuration FTP/FTPS sécurisé, partage de fichiers inter-VMs.",
+    tags: ["VirtualBox", "NAT", "FTP/FTPS", "Réseau"],
+  },
+];
+
+const VEILLE = [
+  {
+    emoji: "🛡️", grad: "linear-gradient(135deg,#f2e9d8,#e8d8c0)",
+    cat: "Cybersécurité", date: "Mars 2025",
+    title: "Zero Trust Network Access : faut-il abandonner le VPN traditionnel ?",
+    desc: "Analyse du modèle Zero Trust et de son impact sur les architectures réseau d'entreprise. Comparaison ZTNA vs VPN SSL.",
+    source: "ANSSI / LeMagIT",
+  },
+  {
+    emoji: "⚙️", grad: "linear-gradient(135deg,#e8d8c0,#ddc8a8)",
+    cat: "Systèmes", date: "Fév. 2025",
+    title: "Windows Server 2025 : les nouveautés pour les administrateurs SISR",
+    desc: "Tour d'horizon des nouvelles fonctionnalités de Windows Server 2025 : SMB over QUIC, Hyper-V improvements, sécurité renforcée.",
+    source: "Microsoft Docs / IT-Connect",
+  },
+  {
+    emoji: "🌐", grad: "linear-gradient(135deg,#ddc8a8,#d4bc90)",
+    cat: "Réseaux", date: "Jan. 2025",
+    title: "BGP Hijacking : comment les attaques sur le routage Internet sont-elles détectées ?",
+    desc: "Étude des mécanismes de détection des détournements BGP et des solutions de protection (RPKI, MANRS) pour sécuriser le routage.",
+    source: "RIPE NCC / Cloudflare Blog",
+  },
+];
+
+/* ── COMPONENTS ── */
+
+function Navbar() {
+  return (
+    <nav className="nav">
+      <div className="nav-logo">AC.</div>
+      <ul className="nav-links">
+        {[["À propos","#about"],["Parcours","#parcours"],["Compétences","#competences"],["Projets","#projets"],["Veille","#veille"],["Contact","#contact"]].map(([l,h]) => (
+          <li key={l}><a href={h}>{l}</a></li>
+        ))}
+      </ul>
+      <span className="nav-badge">En alternance · SISR</span>
+    </nav>
+  );
+}
+
+function useTypewriter(lines, { typeSpeed = 80, deleteSpeed = 45, pauseAfterType = 1800, pauseAfterDelete = 500 } = {}) {
+  const [display, setDisplay] = React.useState('');
+  const [lineIdx, setLineIdx] = React.useState(0);
+  const [isDeleting, setIsDeleting] = React.useState(false);
+
+  React.useEffect(() => {
+    const current = lines[lineIdx];
+    let timeout;
+    if (!isDeleting) {
+      if (display.length < current.length) {
+        timeout = setTimeout(() => setDisplay(current.slice(0, display.length + 1)), typeSpeed);
+      } else {
+        timeout = setTimeout(() => setIsDeleting(true), pauseAfterType);
+      }
+    } else {
+      if (display.length > 0) {
+        timeout = setTimeout(() => setDisplay(display.slice(0, -1)), deleteSpeed);
+      } else {
+        setIsDeleting(false);
+        setLineIdx((lineIdx + 1) % lines.length);
+        timeout = setTimeout(() => {}, pauseAfterDelete);
+      }
+    }
+    return () => clearTimeout(timeout);
+  }, [display, isDeleting, lineIdx]);
+
+  return display;
+}
+
+function Hero() {
+  const typed = useTypewriter([
+    'Abdoulaye COULIBALY',
+    'Technicien Sys. & Réseau',
+    'Étudiant BTS SIO SISR',
+    'En recherche d\'alternance',
+  ]);
+
+  return (
+    <section className="hero" id="accueil">
+      <div className="hero-orb orb1"/>
+      <div className="hero-orb orb2"/>
+      <div className="hero-inner">
+        <div className="hero-text">
+          <div className="hero-tag"><span className="dot"/>&nbsp;Disponible — 1 sem école / 1 sem entreprise</div>
+          <h1>
+            Bonjour, je suis
+            <span className="name">
+              {typed}<span className="cursor">|</span>
+            </span>
+          </h1>
+          <div className="hero-role">$ Technicien Système &amp; Réseau — BTS SIO SISR</div>
+          <p>
+            Étudiant en BTS SIO option SISR à l'IPSSI Paris, passionné par
+            l'administration des systèmes, des réseaux et la cybersécurité.
+            Fort de 3 expériences professionnelles en entreprise.
+          </p>
+          <div className="hero-btns">
+            <a className="btn-fill" href="cv.html" target="_blank">📄 Voir mon CV</a>
+            <a className="btn-outline" href="#projets">⬇ Mes projets</a>
+            <a className="btn-outline" href="tableau-e5.html" target="_blank">⊞ Tableau E5</a>
+          </div>
+          <div className="hero-stats">
+            <div><div className="stat-num">3</div><div className="stat-lbl">Expériences</div></div>
+            <div><div className="stat-num">4</div><div className="stat-lbl">Projets réalisés</div></div>
+            <div><div className="stat-num">19</div><div className="stat-lbl">ans</div></div>
+          </div>
+        </div>
+        <div className="hero-card">
+          <div className="avatar">👨🏿‍💻</div>
+          <div className="hcard-name">Abdoulaye COULIBALY</div>
+          <div className="hcard-role">BTS SIO option SISR<br/>IPSSI Paris</div>
+          <div className="hcard-divider"/>
+          <div className="hcard-row"><span className="ico">📍</span><span>Saint-Denis <strong>(93200)</strong></span></div>
+          <div className="hcard-row"><span className="ico">📧</span><span>abdoulayecoul667@gmail.com</span></div>
+          <div className="hcard-row"><span className="ico">📞</span><span><strong>+33 6 21 28 81 94</strong></span></div>
+          <div className="hcard-row"><span className="ico">🔰</span><span><strong>19 ans</strong></span></div>
+          <div className="hcard-tags">
+            {["Rigoureux","Discipliné","Sérieux","Responsable","Équipe"].map(q => <span className="q-tag" key={q}>{q}</span>)}
+          </div>
+        </div>
+      </div>
+      <div className="hero-scroll">
+        <div className="scroll-line"/>
+        <span className="scroll-txt">SCROLL</span>
+      </div>
+    </section>
+  );
+}
+
+function About() {
+  return (
+    <section id="about" className="section section-alt">
+      <div className="about-grid">
+        <div className="about-text">
+          <div className="sec-label">Profil</div>
+          <div className="sec-title" style={{marginBottom:'1rem'}}>À propos de moi</div>
+          <p>
+            Je suis <strong>Abdoulaye COULIBALY</strong>, étudiant en 2ème année de BTS SIO
+            option SISR à l'<strong>IPSSI Paris Grande École Informatique</strong>.
+            Passionné par les réseaux, les systèmes et la cybersécurité, je construis
+            chaque jour mes compétences pour devenir un administrateur infrastructure complet.
+          </p>
+          <p>
+            Mes expériences chez <strong>METRO FRANCE</strong> et à l'<strong>IFFP</strong> m'ont
+            permis de confronter mes connaissances théoriques à des environnements professionnels
+            réels. Rigoureux, discipliné et toujours curieux, j'aime résoudre des problèmes
+            techniques et explorer de nouvelles technologies.
+          </p>
+          <p>
+            Je pratique également la cybersécurité de manière autonome sur des plateformes
+            comme <strong>TryHackMe</strong> et <strong>RootMe</strong>, et j'entretiens un
+            homelab pour expérimenter librement.
+          </p>
+          <div className="about-qualities">
+            {["Rigoureux","Discipliné","Travail d'équipe","Sérieux","Responsable","Curieux","Adaptable"].map(q => (
+              <span className="qual" key={q}>{q}</span>
+            ))}
+          </div>
+        </div>
+        <div className="about-right">
+          <div className="info-card">
+            <div className="info-card-title">Informations</div>
+            <div className="info-row"><span className="i">🎓</span><span>BTS SIO SISR — <strong>IPSSI Paris</strong></span></div>
+            <div className="info-row"><span className="i">📍</span><span>Saint-Denis, <strong>Paris (93200)</strong></span></div>
+            <div className="info-row"><span className="i">🔰</span><span><strong>19 ans</strong> — Permis B en cours</span></div>
+            <div className="info-row"><span className="i">✅</span><span>En recherche d'<strong>alternance</strong></span></div>
+            <div className="info-row"><span className="i">🔄</span><span>1 sem école / 1 sem entreprise</span></div>
+          </div>
+          <div className="info-card">
+            <div className="info-card-title">Langues</div>
+            <div className="lang-row"><span className="lang-name">🇫🇷 Français</span><span className="lang-badge">Langue maternelle</span></div>
+            <div className="lang-row"><span className="lang-name">🇬🇧 Anglais</span><span className="lang-badge">Niveau B2</span></div>
+            <div className="lang-row"><span className="lang-name">🇪🇸 Espagnol</span><span className="lang-badge">Niveau B1</span></div>
+          </div>
+          <div className="info-card">
+            <div className="info-card-title">Centres d'intérêt</div>
+            <div style={{display:'flex',flexWrap:'wrap',gap:'.5rem'}}>
+              {["🔒 CTF / Cybersécurité","🖥 Homelab","📡 Réseaux","💻 Scripting","🎮 Gaming","⚽ Sport"].map(h => (
+                <span key={h} style={{fontSize:'.8rem',padding:'.25rem .7rem',borderRadius:'999px',background:'var(--bg2)',border:'1px solid var(--border)',color:'var(--muted)'}}>{h}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Parcours() {
+  return (
+    <section id="parcours" className="section">
+      <div className="center">
+        <div className="sec-label">Expériences & Formation</div>
+        <div className="sec-title">Mon Parcours</div>
+        <p className="sec-sub">Expériences professionnelles et cursus académique</p>
+      </div>
+      <div className="timeline">
+        {PARCOURS.map((p,i) => (
+          <div className="tl-item" key={i}>
+            <div className="tl-dot">{p.icon}</div>
+            <div className="tl-card">
+              <div className="tl-top">
+                <div style={{flex:1}}>
+                  <div className="tl-title">{p.title}</div>
+                  <div className="tl-org">{p.org}</div>
+                </div>
+                <div style={{display:'flex',gap:'.4rem',flexShrink:0,flexWrap:'wrap'}}>
+                  <span className="tl-date">{p.date}</span>
+                  <span className="tl-type">{p.type}</span>
+                </div>
+              </div>
+              <ul className="tl-missions">
+                {p.missions.map((m,j) => <li key={j}>{m}</li>)}
+              </ul>
+              <div className="tl-tags">
+                {p.tags.map(t => <span className="tl-tag" key={t}>{t}</span>)}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Competences() {
+  return (
+    <section id="competences" className="section section-alt">
+      <div className="center">
+        <div className="sec-label">Expertise technique</div>
+        <div className="sec-title">Mes Compétences</div>
+        <p className="sec-sub">Technologies maîtrisées en formation et en entreprise</p>
+      </div>
+      <div className="skills-grid">
+        {SKILLS.map(cat => (
+          <div className="skill-card" key={cat.title}>
+            <div className="skill-icon" style={{background:cat.color}}>{cat.icon}</div>
+            <h3>{cat.title}</h3>
+            <p>{cat.desc}</p>
+            <ul className="slist">
+              {cat.items.map(s => (
+                <li key={s.n} style={{listStyle:'none'}}>
+                  <div className="srow" style={{marginBottom:'4px'}}>
+                    <span className="sname">{s.n}</span>
+                    <span style={{fontSize:'.73rem',color:'var(--muted2)'}}>{s.v}%</span>
+                  </div>
+                  <div className="sbar-wrap"><div className="sbar" style={{width:s.v+'%'}}/></div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Epreuves() {
+  return (
+    <section id="epreuves" className="section">
+      <div className="center">
+        <div className="sec-label">BTS SIO SISR</div>
+        <div className="sec-title">Épreuves du BTS</div>
+        <p className="sec-sub">Les trois épreuves de certification du BTS SIO option SISR</p>
+      </div>
+      <div className="epreuves-grid">
+        {EPREUVES.map(e => (
+          <div className="ep-card" key={e.ref}>
+            <div className="ep-header">
+              <span className="ep-ref">{e.ref}</span>
+              <span className="ep-coeff">{e.coeff}</span>
+            </div>
+            <h3>{e.title}</h3>
+            <p>{e.desc}</p>
+            <div className="ep-meta">
+              {e.pills.map(p => <span className="ep-pill" key={p}>{p}</span>)}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style={{maxWidth:'860px',margin:'2rem auto 0',background:'var(--card)',border:'1px solid var(--border)',borderRadius:'22px',padding:'2rem 2.5rem',boxShadow:'var(--shadow)',display:'flex',alignItems:'center',gap:'2rem',flexWrap:'wrap'}}>
+        <div style={{flexShrink:0,width:'52px',height:'52px',background:'linear-gradient(135deg,#7a4f2e18,#c4883a18)',borderRadius:'14px',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'1.6rem'}}>✳️</div>
+        <div style={{flex:1,minWidth:'200px'}}>
+          <div style={{fontSize:'.68rem',fontWeight:800,letterSpacing:'.18em',textTransform:'uppercase',color:'var(--accent2)',marginBottom:'.4rem',fontFamily:"'JetBrains Mono',monospace"}}>Certification complémentaire</div>
+          <div style={{fontSize:'1.05rem',fontWeight:800,marginBottom:'.5rem'}}>Parcours de Certification</div>
+          <div style={{display:'flex',gap:'.75rem',flexWrap:'wrap',marginBottom:'.6rem'}}>
+            <span className="ep-pill">Coeff. 1</span>
+            <span className="ep-pill">20 min (oral)</span>
+          </div>
+          <p style={{color:'var(--muted)',fontSize:'.88rem'}}><strong>Objectif :</strong> Valoriser l'acquisition de compétences complémentaires.</p>
+        </div>
+        <div style={{flexShrink:0,background:'var(--bg2)',border:'1px dashed var(--border2)',borderRadius:'12px',padding:'.75rem 1.5rem',fontSize:'.82rem',color:'var(--muted2)',fontStyle:'italic'}}>
+          À compléter
+        </div>
+      </div>
+      <div style={{textAlign:'center',marginTop:'2rem'}}>
+        <a className="btn-outline" href="competences.html" target="_blank">
+          Voir le tableau de compétences →
+        </a>
+      </div>
+    </section>
+  );
+}
+
+function Projets() {
+  return (
+    <section id="projets" className="section section-alt">
+      <div className="center">
+        <div className="sec-label">Réalisations</div>
+        <div className="sec-title">Mes Projets</div>
+        <p className="sec-sub">Projets réalisés en formation et en entreprise</p>
+      </div>
+      <div className="projects-grid">
+        {PROJECTS.map(p => (
+          <div className="proj-card" key={p.title}>
+            <div className="proj-thumb" style={{background:p.grad}}>
+              <div className="proj-thumb-overlay"/>
+              <span>{p.emoji}</span>
+            </div>
+            <div className="proj-body">
+              <div className="proj-meta">
+                <span className="proj-cat">{p.cat}</span>
+              </div>
+              <h3>{p.title}</h3>
+              <p>{p.desc}</p>
+              <div className="proj-tags">
+                {p.tags.map(t => <span className="ptag" key={t}>{t}</span>)}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Veille() {
+  return (
+    <section id="veille" className="section">
+      <div className="center">
+        <div className="sec-label">Veille Technologique</div>
+        <div className="sec-title">Mes Articles</div>
+        <p className="sec-sub">Ma veille sur les évolutions des systèmes, réseaux et cybersécurité</p>
+      </div>
+      <div className="veille-grid">
+        {VEILLE.map(v => (
+          <div className="veille-card" key={v.title}>
+            <div className="veille-thumb" style={{background:v.grad}}>{v.emoji}</div>
+            <div className="veille-body">
+              <div className="veille-meta">
+                <span className="veille-cat">{v.cat}</span>
+                <span className="veille-date">{v.date}</span>
+              </div>
+              <h3>{v.title}</h3>
+              <p>{v.desc}</p>
+              <div style={{fontSize:'.78rem',color:'var(--muted2)',fontFamily:"'JetBrains Mono',monospace",marginBottom:'.7rem'}}>
+                Source : {v.source}
+              </div>
+              <a className="veille-link" href="#">Lire l'article →</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Contact() {
+  return (
+    <section id="contact" className="section section-alt">
+      <div className="contact-box">
+        <div className="center">
+          <div className="sec-label">Contact</div>
+          <div className="sec-title">Travaillons ensemble</div>
+          <p className="sec-sub" style={{marginBottom:'2rem'}}>
+            Disponible pour une alternance ou un stage en administration systèmes et réseaux.
+            N'hésitez pas à me contacter !
+          </p>
+        </div>
+        <div className="center">
+          <a className="contact-email" href="mailto:abdoulayecoul667@gmail.com">
+            ✉ abdoulayecoul667@gmail.com
+          </a>
+        </div>
+        <div className="contact-links">
+          <a className="contact-link" href="https://linkedin.com/in/abdoulaye-coulibaly" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+          <a className="contact-link" href="https://github.com/abdoulaye-coulibaly" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+            GitHub
+          </a>
+          <a className="contact-link" href="tel:+33621288194">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.01 2.22 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14z"/></svg>
+            +33 6 21 28 81 94
+          </a>
+          <a className="contact-link" href="cv.html" target="_blank">
+            📄 Télécharger CV
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="footer">
+      <span>© {new Date().getFullYear()} <strong>Abdoulaye COULIBALY</strong> — BTS SIO option SISR</span>
+      <span>IPSSI Paris · Saint-Denis (93200)</span>
+    </footer>
+  );
+}
+
+function App() {
+  return (
+    <>
+      <Navbar/>
+      <Hero/>
+      <About/>
+      <Parcours/>
+      <Competences/>
+      <Epreuves/>
+      <Projets/>
+      <Veille/>
+      <Contact/>
+      <Footer/>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
