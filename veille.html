@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Veille Technologique - Abdoulaye COULIBALY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #faf6ef;
+      --bg2: #f2e9d8;
+      --bg3: #ede0ca;
+      --card: #fffdf8;
+      --border: #e4d5bc;
+      --border2: #cdb898;
+      --accent: #7a4f2e;
+      --accent2: #c4883a;
+      --accent3: #9b6535;
+      --text: #1c1206;
+      --text2: #2e1e0a;
+      --muted: #7a6650;
+      --muted2: #a08c72;
+      --grad: linear-gradient(135deg, #7a4f2e, #c4883a);
+      --shadow: 0 4px 28px rgba(122,79,46,.09);
+      --shadow2: 0 12px 48px rgba(122,79,46,.14);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: inherit; }
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 6%; background: rgba(250,246,239,.92);
+      backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-size: 1.3rem; font-weight: 900; letter-spacing: -.03em;
+      background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 1.4rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: .85rem; font-weight: 600; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-badge {
+      font-size: .72rem; padding: .28rem .85rem; border-radius: 999px;
+      background: linear-gradient(135deg,#7a4f2e18,#c4883a18);
+      border: 1px solid var(--border2); color: var(--accent3); font-weight: 800;
+    }
+    .hero {
+      min-height: 76vh; padding: 9rem 6% 5rem;
+      display: grid; grid-template-columns: 1.15fr .85fr; gap: 3rem; align-items: center;
+      background:
+        linear-gradient(120deg, rgba(250,246,239,.96), rgba(242,233,216,.86)),
+        radial-gradient(circle at 85% 20%, rgba(196,136,58,.24), transparent 34%);
+    }
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace; font-size: .72rem; font-weight: 800;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--accent2); margin-bottom: .8rem;
+    }
+    h1 { font-size: clamp(2.3rem, 5vw, 4.1rem); line-height: 1.08; letter-spacing: -.04em; margin-bottom: 1rem; }
+    .hero p { max-width: 700px; color: var(--muted); font-size: 1rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: .9rem; margin-top: 2rem; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 44px;
+      padding: .72rem 1.35rem; border-radius: 12px; text-decoration: none;
+      font-size: .88rem; font-weight: 800; transition: transform .2s, box-shadow .2s, background .2s;
+    }
+    .btn-main { background: var(--grad); color: #fff; }
+    .btn-main:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(122,79,46,.28); }
+    .btn-soft { border: 1.5px solid var(--border2); color: var(--text2); background: rgba(255,253,248,.46); }
+    .btn-soft:hover { background: var(--bg3); }
+    .hero-panel {
+      background: var(--card); border: 1px solid var(--border); border-radius: 24px;
+      padding: 1.6rem; box-shadow: var(--shadow2);
+    }
+    .panel-title { font-size: .8rem; color: var(--muted2); text-transform: uppercase; letter-spacing: .14em; font-family: 'JetBrains Mono', monospace; font-weight: 800; margin-bottom: 1rem; }
+    .signal-grid { display: grid; gap: .75rem; }
+    .signal {
+      border: 1px solid var(--border); background: var(--bg); border-radius: 14px;
+      padding: .9rem 1rem;
+    }
+    .signal strong { display: block; color: var(--text2); font-size: .92rem; margin-bottom: .15rem; }
+    .signal span { display: block; color: var(--muted); font-size: .84rem; line-height: 1.55; }
+    .section { padding: 5.5rem 6%; }
+    .section-alt { background: var(--bg2); }
+    .center { text-align: center; }
+    .sec-title { font-size: clamp(1.7rem, 3vw, 2.35rem); line-height: 1.15; letter-spacing: -.03em; margin-bottom: .6rem; }
+    .sec-sub { color: var(--muted); max-width: 740px; margin: 0 auto 2.6rem; }
+    .method-grid, .topic-grid, .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.3rem; }
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 20px;
+      padding: 1.45rem; box-shadow: var(--shadow);
+    }
+    .card h3 { font-size: 1.02rem; line-height: 1.35; margin-bottom: .65rem; }
+    .card p { color: var(--muted); font-size: .9rem; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1rem; }
+    .tag {
+      font-size: .72rem; padding: .22rem .62rem; border-radius: 999px;
+      background: linear-gradient(135deg,#7a4f2e0d,#c4883a0d);
+      border: 1px solid var(--border); color: var(--accent3); font-weight: 800;
+    }
+    .topic {
+      display: grid; grid-template-rows: auto 1fr; overflow: hidden; padding: 0;
+    }
+    .topic-head {
+      min-height: 124px; padding: 1.5rem; display: flex; align-items: flex-end;
+      background: linear-gradient(135deg,#f2e9d8,#d8c09c);
+    }
+    .topic-head.linux { background: linear-gradient(135deg,#e8d8c0,#c8ad82); }
+    .topic-label { font-family: 'JetBrains Mono', monospace; color: var(--accent3); font-weight: 800; letter-spacing: .12em; font-size: .74rem; }
+    .topic-body { padding: 1.45rem; }
+    .points { display: grid; gap: .7rem; margin-top: 1rem; }
+    .point {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+      padding: .8rem .9rem; color: var(--muted); font-size: .86rem;
+    }
+    .point strong { color: var(--text2); }
+    .news-card { display: grid; gap: .75rem; }
+    .news-date { font-family: 'JetBrains Mono', monospace; color: var(--accent2); font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .12em; }
+    .news-card a { color: var(--accent); font-weight: 800; text-decoration: none; }
+    .news-card a:hover { text-decoration: underline; }
+    .old-news { display: none; }
+    .rss-section {
+      background: #070d19;
+      color: #f8fbff;
+    }
+    .rss-wrap { max-width: 1180px; margin: 0 auto; }
+    .rss-top {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; margin-bottom: 1.2rem;
+    }
+    .rss-top h2 { font-size: 1.2rem; font-weight: 900; letter-spacing: -.02em; }
+    .rss-count {
+      color: #b8c6dc; border: 1px solid #223049; border-radius: 999px;
+      padding: .25rem .75rem; font-size: .76rem; background: #0a1222;
+    }
+    .rss-filters { display: flex; flex-wrap: wrap; gap: .55rem; margin-bottom: 2.2rem; }
+    .rss-filter {
+      border: 1px solid #263753; color: #f8fbff; background: #0a1222;
+      border-radius: 999px; padding: .65rem 1.05rem; font-weight: 800;
+      font-size: .82rem; cursor: pointer; transition: background .2s, border-color .2s;
+    }
+    .rss-filter.active, .rss-filter:hover { background: #1d7dff; border-color: #1d7dff; }
+    .rss-list { display: grid; gap: 1rem; }
+    .rss-item {
+      border: 1px solid #1f2d45; background: #090f1d;
+      border-radius: 12px; padding: 1.45rem 1.6rem;
+      min-height: 128px; display: grid; gap: .78rem;
+    }
+    .rss-tags { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .rss-tag {
+      display: inline-flex; align-items: center; min-height: 24px;
+      padding: .18rem .65rem; border-radius: 999px;
+      font-size: .7rem; font-weight: 900; color: #4aa3ff;
+      background: #0b2a52; border: 1px solid #133d73;
+    }
+    .rss-source {
+      display: inline-flex; align-items: center; min-height: 24px;
+      padding: .18rem .65rem; border-radius: 999px;
+      font-size: .7rem; color: #c7d3e7; background: #0b1424; border: 1px solid #263753;
+    }
+    .rss-title {
+      color: #fff; font-size: .98rem; line-height: 1.45; font-weight: 900;
+      text-decoration: none;
+    }
+    .rss-title:hover { color: #58a8ff; }
+    .rss-date {
+      color: #98a8c0; font-size: .78rem; display: inline-flex; align-items: center; gap: .38rem;
+    }
+    .rss-link {
+      width: fit-content; color: #2388ff; font-size: .78rem;
+      font-weight: 900; text-decoration: none;
+    }
+    .rss-link:hover { text-decoration: underline; }
+    .rss-empty {
+      border: 1px dashed #2b3d5c; background: #090f1d;
+      border-radius: 12px; padding: 1.45rem 1.6rem;
+      color: #b8c6dc; font-size: .9rem;
+    }
+    .rss-empty strong { color: #fff; display: block; margin-bottom: .35rem; }
+    .rss-empty a { color: #58a8ff; font-weight: 800; text-decoration: none; }
+    .rss-empty a:hover { text-decoration: underline; }
+    .rss-alert-action {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: fit-content; margin-top: .9rem; min-height: 38px;
+      padding: .55rem .95rem; border-radius: 999px;
+      background: #1d7dff; color: #fff !important;
+      font-size: .82rem; font-weight: 900; text-decoration: none;
+    }
+    .rss-alert-action:hover { background: #3290ff; text-decoration: none !important; }
+    .source-list {
+      max-width: 960px; margin: 0 auto; background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 1.5rem; box-shadow: var(--shadow);
+    }
+    .source-list li { margin-left: 1.2rem; color: var(--muted); font-size: .9rem; margin-bottom: .55rem; }
+    .source-list a { color: var(--accent); font-weight: 700; text-decoration: none; }
+    .source-list a:hover { text-decoration: underline; }
+    .footer {
+      padding: 2rem 6%; border-top: 1px solid var(--border);
+      color: var(--muted2); font-size: .82rem; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    }
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .nav-links, .nav-badge { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="index.html">AC.</a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">À propos</a></li>
+      <li><a href="index.html#competences">Compétences</a></li>
+      <li><a href="index.html#projets">Projets</a></li>
+      <li><a href="veille.html">Veille</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <span class="nav-badge">Veille SISR</span>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <div class="eyebrow">Veille technologique</div>
+      <h1>Mémoire vive et noyaux Linux</h1>
+      <p>
+        Cette veille me permet de suivre deux sujets importants pour un profil SISR :
+        l'évolution des composants mémoire côté matériel, et les changements du noyau Linux
+        côté stabilité, sécurité et performance système.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-main" href="#nouveautes">Voir les nouveautés</a>
+        <a class="btn btn-soft" href="index.html">Retour au portfolio</a>
+      </div>
+    </div>
+    <aside class="hero-panel">
+      <div class="panel-title">Axes suivis</div>
+      <div class="signal-grid">
+        <div class="signal">
+          <strong>RAM</strong>
+          <span>DDR5, CUDIMM, CAMM2, LPCAMM2, SOCAMM2 et usages IA.</span>
+        </div>
+        <div class="signal">
+          <strong>Noyaux Linux</strong>
+          <span>Versions stable/mainline, branches LTS, correctifs et gestion mémoire.</span>
+        </div>
+        <div class="signal">
+          <strong>Méthode</strong>
+          <span>Google Alertes, sites constructeurs, kernel.org et presse spécialisée.</span>
+        </div>
+      </div>
+    </aside>
+  </header>
+
+  <section class="section section-alt">
+    <div class="center">
+      <div class="eyebrow">Méthode</div>
+      <h2 class="sec-title">Comment je fais ma veille</h2>
+      <p class="sec-sub">Je croise les alertes automatiques avec des sources techniques fiables pour distinguer les annonces importantes des simples rumeurs.</p>
+    </div>
+    <div class="method-grid">
+      <article class="card">
+        <h3>Google Alertes</h3>
+        <p>Alertes configurées sur des mots-clés comme DDR5, CAMM2, LPCAMM2, kernel Linux, Linux LTS et sécurité noyau.</p>
+        <div class="tag-row"><span class="tag">Alertes</span><span class="tag">Mots-clés</span></div>
+      </article>
+      <article class="card">
+        <h3>Sources officielles</h3>
+        <p>Je vérifie les informations avec kernel.org pour Linux et avec les publications constructeur pour les modules mémoire.</p>
+        <div class="tag-row"><span class="tag">kernel.org</span><span class="tag">Micron</span><span class="tag">JEDEC</span></div>
+      </article>
+      <article class="card">
+        <h3>Synthèse SISR</h3>
+        <p>Je retiens surtout l'impact concret : compatibilité matériel, choix d'une branche LTS, sécurité, performance et maintenance.</p>
+        <div class="tag-row"><span class="tag">Support</span><span class="tag">Administration</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="center">
+      <div class="eyebrow">Dossiers</div>
+      <h2 class="sec-title">Les deux thèmes principaux</h2>
+      <p class="sec-sub">Ces sujets se complètent : la mémoire influence directement les performances, et le noyau Linux gère l'exploitation réelle de ces ressources.</p>
+    </div>
+    <div class="topic-grid">
+      <article class="card topic">
+        <div class="topic-head"><span class="topic-label">MEMOIRE VIVE</span></div>
+        <div class="topic-body">
+          <h3>DDR5, CUDIMM, CAMM2 et LPCAMM2</h3>
+          <p>La RAM évolue vers des modules plus rapides, plus denses et parfois plus adaptés aux ordinateurs fins ou aux charges IA.</p>
+          <div class="points">
+            <div class="point"><strong>DDR5 :</strong> plus de bande passante et de meilleures fréquences que la DDR4.</div>
+            <div class="point"><strong>CUDIMM :</strong> un pilote d'horloge améliore la stabilité du signal sur les hautes vitesses.</div>
+            <div class="point"><strong>CAMM2/LPCAMM2 :</strong> format compact, réparable et plus efficace pour certains PC portables.</div>
+            <div class="point"><strong>SOCAMM2 :</strong> format orienté serveurs IA avec une recherche forte sur capacité et efficacité énergétique.</div>
+          </div>
+        </div>
+      </article>
+      <article class="card topic">
+        <div class="topic-head linux"><span class="topic-label">NOYAUX LINUX</span></div>
+        <div class="topic-body">
+          <h3>Versions, LTS, sécurité et gestion mémoire</h3>
+          <p>Le noyau Linux évolue très vite : une veille régulière aide à choisir entre nouveauté, stabilité et support long terme.</p>
+          <div class="points">
+            <div class="point"><strong>Stable :</strong> kernel.org annonce Linux 7.0.3 comme dernière version stable au 5 mai 2026.</div>
+            <div class="point"><strong>Mainline :</strong> Linux 7.1-rc2 est en phase de test, donc à surveiller mais pas à privilégier en production.</div>
+            <div class="point"><strong>LTS :</strong> Linux 6.18 est une branche longterm active, intéressante pour des environnements durables.</div>
+            <div class="point"><strong>Administration :</strong> les correctifs kernel peuvent concerner la sécurité, les pilotes, le réseau et la mémoire.</div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section rss-section" id="nouveautes">
+    <div class="rss-wrap">
+      <div class="rss-top">
+        <h2>Actualités RSS</h2>
+        <span class="rss-count"><span id="rss-count">0</span> articles</span>
+      </div>
+      <div class="rss-filters" aria-label="Filtres actualités">
+        <button class="rss-filter active" type="button" data-filter="all">Tous</button>
+        <button class="rss-filter" type="button" data-filter="linux">Noyau Linux</button>
+        <button class="rss-filter" type="button" data-filter="ram">RAM</button>
+      </div>
+      <div class="rss-list" id="rss-list">
+        <article class="rss-item" data-category="ram">
+          <div class="rss-tags"><span class="rss-tag">RAM</span><span class="rss-source">Tom's Hardware</span></div>
+          <a class="rss-title" href="https://www.tomshardware.fr/le-prix-de-la-ram-devrait-doubler-pour-atteindre-des-sommets-courant-juin/" target="_blank" rel="noopener noreferrer">Le prix de la RAM devrait doubler pour atteindre des sommets courant juin - Tom's Hardware</a>
+          <span class="rss-date">5 mai 2026</span>
+          <a class="rss-link" href="https://www.tomshardware.fr/le-prix-de-la-ram-devrait-doubler-pour-atteindre-des-sommets-courant-juin/" target="_blank" rel="noopener noreferrer">Lire l'article ↗</a>
+        </article>
+        <article class="rss-item" data-category="linux">
+          <div class="rss-tags"><span class="rss-tag">Noyau Linux</span><span class="rss-source">it social</span></div>
+          <a class="rss-title" href="https://itsocial.fr/cybersecurite/cybersecurite-articles/anatomie-dune-vulnerabilite-copy-fail-donne-les-droits-root-sur-tout-noyau-linux-depuis-2017/" target="_blank" rel="noopener noreferrer">Anatomie d'une vulnérabilité : Copy Fail donne les droits root sur tout noyau Linux depuis 2017 - it social</a>
+          <span class="rss-date">4 mai 2026</span>
+          <a class="rss-link" href="https://itsocial.fr/cybersecurite/cybersecurite-articles/anatomie-dune-vulnerabilite-copy-fail-donne-les-droits-root-sur-tout-noyau-linux-depuis-2017/" target="_blank" rel="noopener noreferrer">Lire l'article ↗</a>
+        </article>
+        <article class="rss-item" data-category="ram">
+          <div class="rss-tags"><span class="rss-tag">RAM</span><span class="rss-source">Les Numériques</span></div>
+          <a class="rss-title" href="https://www.lesnumeriques.com/informatique/samsung-l-a-confirme-la-penurie-de-ram-va-s-elargir-encore-davantage-en-2027-attention-au-porte-monnaie-n240507.html" target="_blank" rel="noopener noreferrer">Samsung l'a confirmé : la pénurie de RAM va s'élargir encore davantage en 2027, attention au porte-monnaie - Les Numériques</a>
+          <span class="rss-date">1 mai 2026</span>
+          <a class="rss-link" href="https://www.lesnumeriques.com/informatique/samsung-l-a-confirme-la-penurie-de-ram-va-s-elargir-encore-davantage-en-2027-attention-au-porte-monnaie-n240507.html" target="_blank" rel="noopener noreferrer">Lire l'article ↗</a>
+        </article>
+        <article class="rss-item" data-category="ram">
+          <div class="rss-tags"><span class="rss-tag">RAM</span><span class="rss-source">Clubic</span></div>
+          <a class="rss-title" href="https://www.clubic.com/actualite-594583-on-est-pas-sortis-de-l-auberge-samsung-prevoit-une-aggravation-de-la-penurie-de-ram-jusqu-en-2027.html" target="_blank" rel="noopener noreferrer">On est pas sortis de l'auberge ! Samsung prévoit une aggravation de la pénurie de RAM jusqu'en 2027 - Clubic</a>
+          <span class="rss-date">1 mai 2026</span>
+          <a class="rss-link" href="https://www.clubic.com/actualite-594583-on-est-pas-sortis-de-l-auberge-samsung-prevoit-une-aggravation-de-la-penurie-de-ram-jusqu-en-2027.html" target="_blank" rel="noopener noreferrer">Lire l'article ↗</a>
+        </article>
+        <article class="rss-item" data-category="linux">
+          <div class="rss-tags"><span class="rss-tag">Noyau Linux</span><span class="rss-source">Programmez!</span></div>
+          <a class="rss-title" href="https://www.programmez.com/actualites/copy-fail-commentaire-de-suse-sur-la-faille-critique-du-noyau-linux-38597" target="_blank" rel="noopener noreferrer">Copy Fail : commentaire de SUSE sur la faille critique du noyau Linux - Programmez!</a>
+          <span class="rss-date">30 avril 2026</span>
+          <a class="rss-link" href="https://www.programmez.com/actualites/copy-fail-commentaire-de-suse-sur-la-faille-critique-du-noyau-linux-38597" target="_blank" rel="noopener noreferrer">Lire l'article ↗</a>
+        </article>
+        <article class="rss-item" data-category="linux">
+          <div class="rss-tags"><span class="rss-tag">Noyau Linux</span><span class="rss-source">Numerama</span></div>
+          <a class="rss-title" href="https://www.numerama.com/cyberguerre/1965375-copy-fail-comment-une-faille-dans-le-noyau-linux-a-donne-acces-a-tous-vos-systemes-depuis-2017.html" target="_blank" rel="noopener noreferrer">« Copy Fail » : comment une faille dans le noyau Linux a donné accès à tous vos systèmes depuis 2017 - Numerama</a>
+          <span class="rss-date">30 avril 2026</span>
+          <a class="rss-link" href="https://www.numerama.com/cyberguerre/1965375-copy-fail-comment-une-faille-dans-le-noyau-linux-a-donne-acces-a-tous-vos-systemes-depuis-2017.html" target="_blank" rel="noopener noreferrer">Lire l'article ↗</a>
+        </article>
+        <article class="rss-item" data-category="linux">
+          <div class="rss-tags"><span class="rss-tag">Noyau Linux</span><span class="rss-source">kernel.org</span></div>
+          <a class="rss-title" href="https://www.kernel.org/" target="_blank" rel="noopener noreferrer">Linux 7.0.3 est affiché comme dernière version stable du noyau Linux</a>
+          <span class="rss-date">30 avril 2026</span>
+          <a class="rss-link" href="https://www.kernel.org/" target="_blank" rel="noopener noreferrer">Lire l'article ↗</a>
+        </article>
+        <article class="rss-item" data-category="ram">
+          <div class="rss-tags"><span class="rss-tag">RAM</span><span class="rss-source">Micron</span></div>
+          <a class="rss-title" href="https://investors.micron.com/news-releases/news-release-details/micron-sets-new-benchmark-worlds-first-high-capacity-256gb" target="_blank" rel="noopener noreferrer">Micron présente des échantillons SOCAMM2 256 Go pour les charges IA et datacenter</a>
+          <span class="rss-date">3 mars 2026</span>
+          <a class="rss-link" href="https://investors.micron.com/news-releases/news-release-details/micron-sets-new-benchmark-worlds-first-high-capacity-256gb" target="_blank" rel="noopener noreferrer">Lire l'article ↗</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt old-news" id="archives-nouveautes">
+    <div class="center">
+      <div class="eyebrow">Nouveautés</div>
+      <h2 class="sec-title">Dernières informations à suivre</h2>
+      <p class="sec-sub">Synthèse des nouveautés publiques correspondant aux sujets de mes alertes. Les alertes Google privées ne sont pas accessibles sans connexion au compte.</p>
+    </div>
+    <div class="news-grid">
+      <article class="card news-card">
+        <span class="news-date">30 avril 2026</span>
+        <h3>Linux 7.0.3 devient la version stable disponible sur kernel.org</h3>
+        <p>À surveiller pour les tests récents, tandis que les branches longterm restent plus adaptées aux environnements stables.</p>
+        <a href="https://www.kernel.org/" target="_blank" rel="noopener noreferrer">Source kernel.org</a>
+      </article>
+      <article class="card news-card">
+        <span class="news-date">30 avril 2026</span>
+        <h3>Linux 6.18.26 est listé en longterm</h3>
+        <p>Une branche LTS permet de recevoir des correctifs dans la durée, ce qui compte pour les serveurs et postes gérés.</p>
+        <a href="https://www.kernel.org/" target="_blank" rel="noopener noreferrer">Source kernel.org</a>
+      </article>
+      <article class="card news-card">
+        <span class="news-date">3 mars 2026</span>
+        <h3>Micron annonce des échantillons SOCAMM2 256 Go</h3>
+        <p>Le SOCAMM2 vise les infrastructures datacenter et IA avec plus de capacité et une consommation réduite par rapport aux RDIMM classiques.</p>
+        <a href="https://investors.micron.com/news-releases/news-release-details/micron-sets-new-benchmark-worlds-first-high-capacity-256gb" target="_blank" rel="noopener noreferrer">Lire l'annonce Micron</a>
+      </article>
+      <article class="card news-card">
+        <span class="news-date">2026</span>
+        <h3>LPCAMM2 monte jusqu'à 9 600 Mb/s chez Micron</h3>
+        <p>Le format LPCAMM2 combine LPDDR5X et réparabilité pour les PC portables fins, avec un gain de place important.</p>
+        <a href="https://www.micron.com/products/memory/dram-components/lpddr/lpcamm2" target="_blank" rel="noopener noreferrer">Voir la page Micron LPCAMM2</a>
+      </article>
+      <article class="card news-card">
+        <span class="news-date">Octobre 2025</span>
+        <h3>Linux 6.18 améliore la gestion mémoire</h3>
+        <p>Les changements autour du swap, des folios et des huge pages montrent que la performance mémoire reste un sujet clé côté noyau.</p>
+        <a href="https://www.phoronix.com/news/Linux-6.18-MM" target="_blank" rel="noopener noreferrer">Lire l'analyse Phoronix</a>
+      </article>
+      <article class="card news-card">
+        <span class="news-date">Septembre 2025</span>
+        <h3>Crucial LPCAMM2 atteint 8 533 MT/s</h3>
+        <p>Cette évolution montre l'intérêt des formats mémoire compacts pour les machines mobiles et les usages IA locaux.</p>
+        <a href="https://www.micron.com/about/press/news/crucial-lpcamm2-powers-ai-ready-laptops-with-breakthrough-8533mts-speeds" target="_blank" rel="noopener noreferrer">Lire le communiqué Micron</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="center">
+      <div class="eyebrow">Sources</div>
+      <h2 class="sec-title">Références utilisées</h2>
+      <p class="sec-sub">Les liens ci-dessous permettent de vérifier les informations et de continuer la veille.</p>
+    </div>
+    <ul class="source-list">
+      <li><a href="https://www.kernel.org/" target="_blank" rel="noopener noreferrer">kernel.org</a> : versions stable, mainline, longterm et changelogs du noyau Linux.</li>
+      <li><a href="https://docs.kernel.org/" target="_blank" rel="noopener noreferrer">Documentation du noyau Linux</a> : documentation technique officielle.</li>
+      <li><a href="https://www.micron.com/products/memory/dram-components/lpddr/lpcamm2" target="_blank" rel="noopener noreferrer">Micron LPCAMM2</a> : caractéristiques du format mémoire compact pour PC portables.</li>
+      <li><a href="https://investors.micron.com/news-releases/news-release-details/micron-sets-new-benchmark-worlds-first-high-capacity-256gb" target="_blank" rel="noopener noreferrer">Micron SOCAMM2</a> : annonce des modules 256 Go pour datacenter.</li>
+      <li><a href="https://www.phoronix.com/news/Linux-6.18-MM" target="_blank" rel="noopener noreferrer">Phoronix</a> : synthèses techniques sur les changements mémoire du noyau Linux.</li>
+    </ul>
+  </section>
+
+  <footer class="footer">
+    <span>© 2026 Abdoulaye COULIBALY</span>
+    <span>Veille technologique - BTS SIO SISR</span>
+  </footer>
+  <script>
+    const GOOGLE_ALERTS_PAGE_URL = 'https://www.google.fr/alerts#2:4';
+    const GOOGLE_ALERTS_FEEDS = [
+      {
+        label: 'RAM',
+        category: 'ram',
+        url: ''
+      },
+      {
+        label: 'Noyau Linux',
+        category: 'linux',
+        url: ''
+      }
+    ];
+
+    const filters = document.querySelectorAll('.rss-filter');
+    const list = document.getElementById('rss-list');
+    const count = document.getElementById('rss-count');
+    let activeFilter = 'all';
+    let rssArticles = [];
+
+    function stripHtml(value) {
+      const template = document.createElement('template');
+      template.innerHTML = value || '';
+      return template.content.textContent.trim();
+    }
+
+    function formatDate(value) {
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return value || 'Date non précisée';
+      return new Intl.DateTimeFormat('fr-FR', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      }).format(date);
+    }
+
+    function getSourceFromTitle(title) {
+      const parts = title.split(' - ');
+      return parts.length > 1 ? parts[parts.length - 1] : 'Google Alertes';
+    }
+
+    function showMessage(title, text) {
+      list.innerHTML = `
+        <div class="rss-empty">
+          <strong>${title}</strong>
+          ${text}
+        </div>
+      `;
+      count.textContent = '0';
+    }
+
+    function renderArticles() {
+      const visibleArticles = rssArticles.filter((article) => {
+        return activeFilter === 'all' || article.category === activeFilter;
+      });
+
+      count.textContent = visibleArticles.length;
+
+      if (!visibleArticles.length) {
+        showMessage(
+          'Aucun article à afficher',
+          'Aucun article ne correspond au filtre sélectionné, ou le flux RSS Google Alertes n’est pas encore renseigné.'
+        );
+        return;
+      }
+
+      list.innerHTML = visibleArticles.map((article) => `
+        <article class="rss-item" data-category="${article.category}">
+          <div class="rss-tags">
+            <span class="rss-tag">${article.label}</span>
+            <span class="rss-source">${article.source}</span>
+          </div>
+          <a class="rss-title" href="${article.link}" target="_blank" rel="noopener noreferrer">${article.title}</a>
+          <span class="rss-date">${article.date}</span>
+          <a class="rss-link" href="${article.link}" target="_blank" rel="noopener noreferrer">Lire l'article ↗</a>
+        </article>
+      `).join('');
+    }
+
+    async function loadGoogleAlerts() {
+      const feeds = GOOGLE_ALERTS_FEEDS.filter((feed) => feed.url.trim());
+
+      if (!feeds.length) {
+        showMessage(
+          'Flux Google Alertes à connecter',
+          `Ton Google Alertes est bien lié ici. Pour afficher les articles automatiquement, il faudra ensuite coller l’URL RSS exacte dans <code>GOOGLE_ALERTS_FEEDS</code>.<br><a class="rss-alert-action" href="${GOOGLE_ALERTS_PAGE_URL}" target="_blank" rel="noopener noreferrer">Ouvrir mon Google Alertes ↗</a>`
+        );
+        return;
+      }
+
+      showMessage('Chargement du flux RSS', 'Récupération des dernières alertes Google en cours...');
+
+      try {
+        const responses = await Promise.all(feeds.map(async (feed) => {
+          const response = await fetch(feed.url);
+          if (!response.ok) throw new Error(`Flux inaccessible : ${feed.label}`);
+          const xml = await response.text();
+          const doc = new DOMParser().parseFromString(xml, 'application/xml');
+          return Array.from(doc.querySelectorAll('item')).map((item) => {
+            const title = stripHtml(item.querySelector('title')?.textContent || '');
+            const link = item.querySelector('link')?.textContent || feed.url;
+            return {
+              title,
+              link,
+              label: feed.label,
+              category: feed.category,
+              source: getSourceFromTitle(title),
+              date: formatDate(item.querySelector('pubDate')?.textContent || '')
+            };
+          });
+        }));
+
+        rssArticles = responses.flat().slice(0, 30);
+        renderArticles();
+      } catch (error) {
+        showMessage(
+          'Flux RSS non lisible depuis le navigateur',
+          `Google peut bloquer la lecture directe du RSS par sécurité CORS. Le lien vers ton Google Alertes reste disponible ici.<br><a class="rss-alert-action" href="${GOOGLE_ALERTS_PAGE_URL}" target="_blank" rel="noopener noreferrer">Ouvrir mon Google Alertes ↗</a>`
+        );
+      }
+    }
+
+    filters.forEach((button) => {
+      button.addEventListener('click', () => {
+        activeFilter = button.dataset.filter;
+        filters.forEach((filter) => filter.classList.remove('active'));
+        button.classList.add('active');
+        renderArticles();
+      });
+    });
+
+    loadGoogleAlerts();
+  </script>
+</body>
+</html>

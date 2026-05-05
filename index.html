@@ -203,6 +203,40 @@
     }
 
     /* ── PARCOURS ── */
+    .company-wrap { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr .9fr; gap: 2rem; align-items: stretch; }
+    .company-main, .company-side {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 22px; padding: 2rem; box-shadow: var(--shadow);
+    }
+    .company-kicker {
+      font-family: 'JetBrains Mono', monospace; font-size: .72rem; font-weight: 800;
+      color: var(--accent2); letter-spacing: .16em; text-transform: uppercase; margin-bottom: .7rem;
+    }
+    .company-main h3 { font-size: 1.35rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -.02em; }
+    .company-main p { color: var(--muted); font-size: .9rem; line-height: 1.8; margin-bottom: 1rem; }
+    .company-values { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.2rem; }
+    .company-value {
+      font-size: .78rem; padding: .3rem .75rem; border-radius: 999px;
+      background: linear-gradient(135deg,#7a4f2e10,#c4883a10);
+      border: 1px solid var(--border); color: var(--accent3); font-weight: 700;
+    }
+    .company-stats { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+    .company-stat {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1rem;
+    }
+    .company-stat strong { display: block; font-size: 1.3rem; color: var(--accent); margin-bottom: .25rem; }
+    .company-stat span { color: var(--muted); font-size: .78rem; line-height: 1.45; }
+    .company-role {
+      margin-top: 1rem; padding: 1rem; border-radius: 16px;
+      background: linear-gradient(135deg,#7a4f2e0d,#c4883a12);
+      border: 1px solid var(--border2);
+    }
+    .company-role h4 { font-size: .9rem; font-weight: 850; margin-bottom: .5rem; }
+    .company-role ul { list-style: none; display: grid; gap: .45rem; }
+    .company-role li { position: relative; padding-left: 1rem; color: var(--muted); font-size: .84rem; line-height: 1.55; }
+    .company-role li::before { content: '›'; position: absolute; left: 0; color: var(--accent2); font-weight: 900; }
+
     .timeline { position: relative; max-width: 860px; margin: 0 auto; }
     .timeline::before {
       content: ''; position: absolute; left: 22px; top: 0; bottom: 0;
@@ -247,7 +281,10 @@
     }
 
     /* ── COMPÉTENCES ── */
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.5rem; }
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1.5rem; max-width: 1120px; margin: 0 auto; justify-content: center;
+    }
     .skill-card {
       background: var(--card); border: 1px solid var(--border);
       border-radius: 22px; padding: 1.8rem; box-shadow: var(--shadow);
@@ -294,7 +331,76 @@
     }
 
     /* ── PROJETS ── */
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .certs-wrap { max-width: 920px; margin: 0 auto; display: grid; gap: 1.4rem; }
+    .cert-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 22px; padding: 1.6rem; box-shadow: var(--shadow);
+      transition: border-color .3s, transform .3s, box-shadow .3s;
+    }
+    .cert-card:hover { border-color: var(--accent2); transform: translateY(-4px); box-shadow: var(--shadow2); }
+    .cert-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+    .cert-title-row { display: flex; align-items: center; gap: .9rem; min-width: 0; }
+    .cert-icon {
+      flex-shrink: 0; width: 48px; height: 48px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg,#7a4f2e12,#c4883a14);
+      border: 1px solid var(--border); color: var(--accent);
+    }
+    .cert-icon svg { width: 27px; height: 27px; }
+    .cert-title { font-size: 1.02rem; font-weight: 850; line-height: 1.35; color: var(--text); }
+    .cert-status {
+      flex-shrink: 0; display: inline-flex; align-items: center; gap: .35rem;
+      border-radius: 999px; padding: .28rem .65rem;
+      background: #16a34a12; border: 1px solid #16a34a35; color: #15803d;
+      font-size: .72rem; font-weight: 800;
+    }
+    .cert-meta { display: flex; gap: .8rem; flex-wrap: wrap; color: var(--muted2); font-size: .82rem; margin-bottom: 1rem; }
+    .cert-meta span { display: inline-flex; align-items: center; gap: .35rem; }
+    .cert-summary { color: var(--muted); font-size: .88rem; line-height: 1.75; margin-bottom: 1.1rem; }
+    .cert-panel {
+      background: linear-gradient(135deg,#7a4f2e08,#c4883a08);
+      border: 1px solid var(--border2); border-radius: 14px;
+      padding: 1rem; margin-bottom: 1rem;
+    }
+    .cert-panel-title {
+      font-family: 'JetBrains Mono', monospace; font-size: .68rem; font-weight: 800;
+      letter-spacing: .14em; text-transform: uppercase; color: var(--accent);
+      margin-bottom: .75rem;
+    }
+    .cert-panel p { color: var(--muted); font-size: .83rem; line-height: 1.65; margin-bottom: .45rem; }
+    .cert-panel p:last-child { margin-bottom: 0; }
+    .cert-tags { display: flex; flex-wrap: wrap; gap: .45rem; margin-bottom: 1rem; }
+    .cert-tag {
+      font-family: 'JetBrains Mono', monospace; font-size: .72rem; font-weight: 700;
+      padding: .25rem .55rem; border-radius: 7px;
+      background: #2f80ed10; border: 1px solid #2f80ed30; color: #1f6fd1;
+    }
+    .cert-actions { display: flex; gap: .6rem; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid var(--border); }
+    .cert-btn {
+      display: inline-flex; align-items: center; gap: .45rem;
+      padding: .55rem .9rem; border-radius: 10px; text-decoration: none;
+      font-size: .82rem; font-weight: 800; transition: transform .2s, box-shadow .2s, background .2s;
+    }
+    .cert-btn svg { width: 15px; height: 15px; }
+    .cert-btn-main { background: var(--grad); color: #fff; }
+    .cert-btn-soft { background: var(--bg2); border: 1px solid var(--border); color: var(--text2); }
+    .cert-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(122,79,46,.16); }
+
+    .project-tabs { display: flex; justify-content: center; gap: .65rem; flex-wrap: wrap; margin: -1.2rem 0 2rem; }
+    .project-tab {
+      display: inline-flex; align-items: center; gap: .45rem;
+      padding: .65rem 1rem; border-radius: 10px;
+      border: 1.5px solid var(--border); background: var(--card);
+      color: var(--muted); font-weight: 800; font-size: .84rem;
+      cursor: pointer; transition: transform .2s, border-color .2s, background .2s, color .2s, box-shadow .2s;
+    }
+    .project-tab:hover { transform: translateY(-2px); border-color: var(--border2); box-shadow: var(--shadow); }
+    .project-tab.active { background: var(--grad); color: #fff; border-color: transparent; box-shadow: 0 10px 28px rgba(122,79,46,.22); }
+    .project-tab svg { width: 16px; height: 16px; }
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem; max-width: 1160px; margin: 0 auto; justify-content: center;
+    }
     .proj-card {
       background: var(--card); border: 1px solid var(--border);
       border-radius: 24px; overflow: hidden; box-shadow: var(--shadow);
@@ -318,6 +424,25 @@
     .proj-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
     .ptag { font-size: .72rem; padding: .22rem .6rem; border-radius: 999px; background: linear-gradient(135deg,#7a4f2e0d,#c4883a0d); border: 1px solid var(--border); color: var(--accent3); font-weight: 500; }
 
+    /* ── DOC BUTTON ── */
+    .proj-doc {
+      margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid var(--border);
+      display: flex; gap: .6rem; flex-wrap: wrap;
+    }
+    .proj-doc-link {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .55rem 1.1rem; border-radius: 10px;
+      background: linear-gradient(135deg,#7a4f2e10,#c4883a10);
+      border: 1.5px solid var(--border2);
+      color: var(--accent); font-weight: 700; font-size: .82rem;
+      text-decoration: none; transition: all .25s; cursor: pointer;
+    }
+    .proj-doc-link:hover {
+      background: var(--grad); color: #fff; border-color: var(--accent);
+      transform: translateY(-2px); box-shadow: 0 6px 20px rgba(122,79,46,.2);
+    }
+    .proj-doc-link svg { width: 16px; height: 16px; flex-shrink: 0; }
+
     /* ── VEILLE ── */
     .veille-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
     .veille-card {
@@ -333,6 +458,21 @@
     .veille-date { font-size: .75rem; color: var(--muted2); }
     .veille-card h3 { font-size: .98rem; font-weight: 800; margin-bottom: .4rem; line-height: 1.4; }
     .veille-card p { color: var(--muted); font-size: .85rem; line-height: 1.6; margin-bottom: 1rem; }
+    .veille-card.featured { max-width: 920px; margin: 0 auto; }
+    .veille-card.featured .veille-thumb { height: 180px; font-size: 4.2rem; }
+    .veille-points { display: grid; gap: .65rem; margin: 1rem 0; }
+    .veille-point {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 12px; padding: .8rem .9rem; color: var(--muted);
+      font-size: .84rem; line-height: 1.6;
+    }
+    .veille-point strong { color: var(--text2); }
+    .veille-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin: .8rem 0 1rem; }
+    .veille-tag {
+      font-size: .72rem; padding: .22rem .6rem; border-radius: 999px;
+      background: linear-gradient(135deg,#7a4f2e0d,#c4883a0d);
+      border: 1px solid var(--border); color: var(--accent3); font-weight: 700;
+    }
     .veille-link {
       font-size: .82rem; font-weight: 700; color: var(--accent3); text-decoration: none;
       display: inline-flex; align-items: center; gap: .3rem; transition: gap .2s;
@@ -369,12 +509,19 @@
     @media (max-width: 960px) {
       .hero-card { display: none; }
       .about-grid { grid-template-columns: 1fr; }
+      .company-wrap { grid-template-columns: 1fr; }
+      .nav-links { gap: 1rem; }
     }
     @media (max-width: 640px) {
       .nav-links, .nav-badge { display: none; }
       .section { padding: 5rem 5%; }
       .hero { padding: 0 5%; padding-top: 80px; }
       .hero-stats { gap: 1.5rem; }
+      .cert-card { padding: 1.2rem; }
+      .cert-head { flex-direction: column; }
+      .cert-title-row { align-items: flex-start; }
+      .cert-actions { flex-direction: column; }
+      .cert-btn { justify-content: center; }
       .footer { flex-direction: column; text-align: center; }
     }
   </style>
@@ -518,30 +665,157 @@ const EPREUVES = [
   },
 ];
 
+const CERTIFICATIONS = [
+  {
+    title: "Microsoft 365 : Gestion des identités et de la mobilité",
+    platform: "LinkedIn Learning",
+    year: "2026",
+    status: "Obtenue",
+    proof: "certif-microsoft-365.pdf",
+    verify: "certif-microsoft-365.pdf",
+    summary: "Certification obtenue pour renforcer la gestion des identités et de la mobilité des appareils dans un environnement Microsoft 365 avec Entra ID et Intune.",
+    why: "Consolider mes pratiques d'administration Microsoft 365 utilisées en alternance.",
+    learn: "Gestion des identités, accès, authentification forte et pilotage de la mobilité via Intune.",
+    business: "Onboarding plus structuré, accès mieux sécurisés et meilleure conformité des appareils.",
+    tags: ["Microsoft 365", "Microsoft Entra ID", "Intune", "IAM", "MFA", "Mobilité"],
+  },
+  {
+    title: "Microsoft : Créer, configurer et gérer des identités",
+    platform: "Microsoft Learn",
+    year: "2026",
+    status: "Obtenue",
+    proof: "certif-entra-identites.pdf",
+    verify: "certif-entra-identites.pdf",
+    summary: "Parcours centré sur la création, la configuration et l'administration des identités dans Microsoft Entra ID.",
+    why: "Approfondir la base IAM avant de travailler sur des environnements cloud et hybrides.",
+    learn: "Création d'utilisateurs, groupes, rôles, méthodes d'authentification et gestion du cycle de vie des comptes.",
+    business: "Administration plus propre des comptes, attribution d'accès plus fiable et réduction des erreurs de configuration.",
+    tags: ["Microsoft Entra ID", "Identités", "Utilisateurs", "Groupes", "RBAC", "Sécurité"],
+  },
+];
+
 const PROJECTS = [
   {
     emoji: "🗄️", grad: "linear-gradient(135deg,#f2e9d8,#e8d8c0)",
     cat: "Système", title: "Domaine Active Directory",
     desc: "Création d'un domaine AD complet avec configuration GPO : restrictions d'accès, politiques systèmes, gestion des utilisateurs et groupes de sécurité.",
     tags: ["Windows Server", "Active Directory", "GPO", "DNS"],
+    doc: null,
   },
   {
     emoji: "📡", grad: "linear-gradient(135deg,#e8d8c0,#ddc8a8)",
     cat: "Supervision", title: "Infrastructure Zabbix",
     desc: "Installation et configuration de Zabbix sur Windows et Linux. Création d'agents, déclencheurs d'alertes et tableaux de bord de supervision.",
     tags: ["Zabbix", "Ubuntu", "Windows", "SNMP"],
+    doc: null,
   },
   {
     emoji: "🔐", grad: "linear-gradient(135deg,#ddc8a8,#d4bc90)",
     cat: "Sécurité", title: "Serveur Web Sécurisé HTTPS",
     desc: "Configuration d'un serveur web avec certificat SSL, redirection automatique HTTP→HTTPS et durcissement de la configuration Apache.",
     tags: ["Apache", "SSL/TLS", "HTTPS", "Linux"],
+    doc: null,
   },
   {
     emoji: "🖧", grad: "linear-gradient(135deg,#d4bc90,#c8b078)",
     cat: "Réseau", title: "Virtualisation Réseau NAT",
     desc: "Mise en réseau de machines virtuelles via NAT sous VirtualBox. Configuration FTP/FTPS sécurisé, partage de fichiers inter-VMs.",
     tags: ["VirtualBox", "NAT", "FTP/FTPS", "Réseau"],
+    doc: null,
+  },
+  {
+    emoji: "💾", grad: "linear-gradient(135deg,#e0d4c0,#d4c4a8)",
+    cat: "Sauvegarde", title: "Stratégie de Sauvegarde Linux",
+    desc: "Mise en place d'une stratégie de sauvegarde complète, incrémentielle et différentielle sous Linux avec rsync, scripts Bash et automatisation via cron.",
+    tags: ["Linux", "rsync", "Bash", "cron", "Sauvegarde"],
+    doc: "docs/Doc_TP_Mise_en_place_dune_stratgie_de_sauvegarde_et_de_protection_des_fichiers.pdf",
+  },
+  {
+    emoji: "🏢", grad: "linear-gradient(135deg,#d8ccb4,#c8b898)",
+    cat: "Système", title: "Active Directory sur Proxmox",
+    desc: "Déploiement complet d'un contrôleur de domaine Active Directory sous Windows Server 2022 sur Proxmox VE : AD DS, DNS, DHCP, création d'utilisateurs et jonction au domaine.",
+    tags: ["Proxmox", "Windows Server 2022", "AD DS", "DHCP", "DNS"],
+    doc: "docs/Installation_et_configuration_Active_Directory.pdf",
+  },
+  {
+    emoji: "🛠️", grad: "linear-gradient(135deg,#d0c4ac,#c0b08c)",
+    cat: "ITSM", title: "Installation GLPI",
+    desc: "Déploiement de GLPI 11 sur Debian 13 avec Apache, MariaDB et PHP 8.4. Configuration du VirtualHost, sécurisation des sessions et mise en production de l'outil de gestion de parc.",
+    tags: ["GLPI", "Debian", "Apache", "MariaDB", "PHP"],
+    doc: "docs/Installation_et_configuration_GLPI_Tool.pdf",
+  },
+  {
+    emoji: "🖥️", grad: "linear-gradient(135deg,#c8bc9c,#b8a880)",
+    cat: "Virtualisation", title: "Serveur Proxmox VE",
+    desc: "Installation d'un serveur Proxmox VE 9.0 sur machine physique Dell : boot Ventoy, configuration réseau, accès à l'interface web et upload d'images ISO pour la création de VMs.",
+    tags: ["Proxmox VE", "Virtualisation", "KVM", "Réseau"],
+    doc: "docs/installation_serveur_proxmox.pdf",
+  },
+  {
+    emoji: "🛡️", grad: "linear-gradient(135deg,#c0b490,#b0a074)",
+    cat: "Cybersécurité", title: "SIEM Wazuh",
+    desc: "Installation et configuration de Wazuh (SIEM open-source) : déploiement de l'indexer, du manager, du dashboard et des agents sur machines Windows Server pour la détection d'intrusions.",
+    tags: ["Wazuh", "SIEM", "Cybersécurité", "Filebeat", "Ubuntu"],
+    doc: "docs/installation_et_configuration_wazuh.pdf",
+  },
+];
+
+const ENTERPRISE_PROJECTS = [
+  {
+    emoji: "🔐", grad: "linear-gradient(135deg,#f2e9d8,#e8d8c0)",
+    cat: "Azure", title: "Gestion de privilège Azure",
+    desc: "Documentation de procédure autour de la gestion des privilèges et des accès dans un environnement Microsoft Azure / Entra.",
+    tags: ["Azure", "Privilèges", "Accès", "Sécurité", "Entra ID"],
+    doc: "docs/gestion-privilege-azure.pdf",
+  },
+  {
+    emoji: "🖨️", grad: "linear-gradient(135deg,#e8d8c0,#ddc8a8)",
+    cat: "Knowledge Base", title: "KB Lexmark",
+    desc: "Base de connaissances destinée au support : diagnostic, consignes et résolution d'incidents liés aux imprimantes Lexmark.",
+    tags: ["Lexmark", "Impression", "Support", "KB", "Incident"],
+    doc: "docs/kb-lexmark.pdf",
+  },
+  {
+    emoji: "🎫", grad: "linear-gradient(135deg,#ddc8a8,#d4bc90)",
+    cat: "Ticketing", title: "Serveur GLPI Ticketing",
+    desc: "Mise en place d'un serveur GLPI pour la gestion des tickets, le suivi des demandes et l'organisation du support informatique.",
+    tags: ["GLPI", "Ticketing", "Support", "ITSM", "Serveur"],
+    doc: "docs/mise-en-place-serveur-glpi-ticketing.pdf",
+  },
+  {
+    emoji: "📱", grad: "linear-gradient(135deg,#d4bc90,#c8b078)",
+    cat: "Mobilité", title: "MOOP iPhone",
+    desc: "Procédure opérationnelle pour accompagner la gestion, la préparation et le support des iPhone en environnement professionnel.",
+    tags: ["iPhone", "MOOP", "Support", "Mobilité", "Procédure"],
+    doc: "docs/moop-iphone.pdf",
+  },
+  {
+    emoji: "📘", grad: "linear-gradient(135deg,#e0d4c0,#d4c4a8)",
+    cat: "Procédure", title: "MOOP Master",
+    desc: "Document maître regroupant les bonnes pratiques et étapes de traitement pour les opérations récurrentes du support.",
+    tags: ["MOOP", "Documentation", "Procédure", "Support"],
+    doc: "docs/moop-master.pdf",
+  },
+  {
+    emoji: "♻️", grad: "linear-gradient(135deg,#d8ccb4,#c8b898)",
+    cat: "Mobilité", title: "Réinitialisation iPhone",
+    desc: "Procédure de réinitialisation d'un iPhone pour remise en service, dépannage ou changement d'utilisateur.",
+    tags: ["iPhone", "Réinitialisation", "Support", "Mobilité"],
+    doc: "docs/moop-reinitialisation-iphone.pdf",
+  },
+  {
+    emoji: "🛡️", grad: "linear-gradient(135deg,#d0c4ac,#c0b08c)",
+    cat: "Intune", title: "Configuration Intune iPhone",
+    desc: "Procédure de configuration et d'enrôlement d'un iPhone via Microsoft Intune pour sécuriser et administrer les terminaux mobiles.",
+    tags: ["Intune", "iPhone", "MDM", "Enrôlement", "Microsoft 365"],
+    doc: "docs/procedure-configuration-intune-iphone.pdf",
+  },
+  {
+    emoji: "🧾", grad: "linear-gradient(135deg,#c8bc9c,#b8a880)",
+    cat: "Jira", title: "Exemple de ticket Jira",
+    desc: "Capture d'un ticket Jira Service Management illustrant le suivi d'un incident, ses informations de traitement et sa résolution.",
+    tags: ["Jira", "Ticket", "JSM", "Incident", "Support"],
+    doc: "docs/exemple-ticket-jira.png",
   },
 ];
 
@@ -571,12 +845,42 @@ const VEILLE = [
 
 /* ── COMPONENTS ── */
 
+const RAM_VEILLE = [
+  {
+    emoji: "RAM", grad: "linear-gradient(135deg,#f2e9d8,#d9c7a8)",
+    cat: "Matériel", date: "Mai 2026",
+    title: "Mémoire vive : DDR5, CUDIMM, CAMM2 et les nouveautés à suivre",
+    desc: "La mémoire vive évolue rapidement : la DDR5 devient la norme sur les PC récents, pendant que de nouveaux formats cherchent à améliorer la stabilité, la densité et l'efficacité énergétique.",
+    points: [
+      ["DDR5", "Elle apporte plus de bande passante que la DDR4, une meilleure gestion de l'alimentation et des fréquences plus élevées pour les postes de travail, PC gaming et serveurs."],
+      ["CUDIMM / CSODIMM", "Ces barrettes DDR5 ajoutent un pilote d'horloge pour stabiliser le signal et permettre des vitesses plus hautes, notamment sur les futures plateformes PC."],
+      ["CAMM2", "Ce format standardisé par JEDEC vise à remplacer progressivement le SO-DIMM dans certains ordinateurs portables avec des modules plus fins et plus denses."],
+      ["Impact SISR", "Pour un technicien système et réseau, comprendre ces évolutions aide à mieux choisir, diagnostiquer et faire évoluer les postes utilisateurs et serveurs."],
+    ],
+    tags: ["DDR5", "CUDIMM", "CSODIMM", "CAMM2", "SO-DIMM", "Performance"],
+    source: "JEDEC / Micron / Samsung / presse specialisee",
+  },
+  {
+    emoji: "LINUX", grad: "linear-gradient(135deg,#e8d8c0,#c8ad82)",
+    cat: "Systemes", date: "Mai 2026",
+    title: "Noyaux Linux : versions, LTS, securite et memoire",
+    desc: "Je surveille les versions du noyau Linux pour suivre les correctifs, les cycles LTS et les changements utiles en administration systeme.",
+    points: [
+      ["Versions", "Kernel.org indique Linux 7.0.3 en stable et 7.1-rc2 en mainline au 5 mai 2026."],
+      ["LTS", "Linux 6.18 est une branche longterm active, importante pour les distributions et environnements stables."],
+      ["Memoire", "Les nouveautes noyau touchent aussi le swap, les huge pages, le cache et les performances sous forte charge."],
+    ],
+    tags: ["Linux", "Kernel", "LTS", "Securite"],
+    source: "kernel.org / documentation Linux / veille securite",
+  },
+];
+
 function Navbar() {
   return (
     <nav className="nav">
       <div className="nav-logo">AC.</div>
       <ul className="nav-links">
-        {[["À propos","#about"],["Parcours","#parcours"],["Compétences","#competences"],["Projets","#projets"],["Veille","#veille"],["Contact","#contact"]].map(([l,h]) => (
+        {[["À propos","#about"],["Entreprise","#entreprise"],["Parcours","#parcours"],["Compétences","#competences"],["Certifications","#certifications"],["Projets","#projets"],["Veille","veille.html"],["Contact","#contact"]].map(([l,h]) => (
           <li key={l}><a href={h}>{l}</a></li>
         ))}
       </ul>
@@ -648,7 +952,7 @@ function Hero() {
           </div>
           <div className="hero-stats">
             <div><div className="stat-num">3</div><div className="stat-lbl">Expériences</div></div>
-            <div><div className="stat-num">4</div><div className="stat-lbl">Projets réalisés</div></div>
+            <div><div className="stat-num">9</div><div className="stat-lbl">Projets réalisés</div></div>
             <div><div className="stat-num">19</div><div className="stat-lbl">ans</div></div>
           </div>
         </div>
@@ -726,6 +1030,63 @@ function About() {
                 <span key={h} style={{fontSize:'.8rem',padding:'.25rem .7rem',borderRadius:'999px',background:'var(--bg2)',border:'1px solid var(--border)',color:'var(--muted)'}}>{h}</span>
               ))}
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function MetroFrance() {
+  return (
+    <section id="entreprise" className="section">
+      <div className="center">
+        <div className="sec-label">Entreprise d'accueil</div>
+        <div className="sec-title">METRO France</div>
+        <p className="sec-sub">Présentation de l'entreprise dans laquelle j'ai évolué comme technicien support informatique</p>
+      </div>
+      <div className="company-wrap">
+        <div className="company-main">
+          <div className="company-kicker">Grossiste alimentaire et matériel professionnel</div>
+          <h3>Un acteur majeur au service des restaurateurs et commerçants indépendants</h3>
+          <p>
+            METRO France accompagne au quotidien les professionnels de la restauration et les commerçants indépendants
+            avec des produits alimentaires, du matériel, des conseils d'experts et des services adaptés à leurs contraintes.
+          </p>
+          <p>
+            L'entreprise met l'accent sur la proximité client, la qualité des produits, les filières locales et les services
+            permettant aux professionnels de développer leur activité.
+          </p>
+          <p>
+            À l'échelle du groupe METRO AG, le chiffre d'affaires net 2023/2024 atteint environ <strong>31,0 milliards d'euros</strong>.
+            En France, METRO met surtout en avant son réseau de Halles, ses clients professionnels, ses références produits et la part
+            importante des produits frais dans son activité.
+          </p>
+          <div className="company-values">
+            {["Restauration indépendante","Produits frais","Services professionnels","Marketplace","Livraison","Conseil client"].map(v => (
+              <span className="company-value" key={v}>{v}</span>
+            ))}
+          </div>
+        </div>
+        <div className="company-side">
+          <div className="company-stats">
+            <div className="company-stat"><strong>99</strong><span>points de vente appelés Halles</span></div>
+            <div className="company-stat"><strong>9 000</strong><span>collaborateurs en France</span></div>
+            <div className="company-stat"><strong>400 000</strong><span>clients professionnels</span></div>
+            <div className="company-stat"><strong>300 000</strong><span>références sur la marketplace</span></div>
+            <div className="company-stat"><strong>20 000</strong><span>références disponibles en Halles</span></div>
+            <div className="company-stat"><strong>60 %</strong><span>du chiffre d'affaires réalisé en produits frais</span></div>
+            <div className="company-stat"><strong>4 000</strong><span>fournisseurs, dont 1/4 de petits producteurs</span></div>
+            <div className="company-stat"><strong>31,0 Md€</strong><span>chiffre d'affaires net du groupe METRO AG en 2023/2024</span></div>
+          </div>
+          <div className="company-role">
+            <h4>Mon contexte informatique</h4>
+            <ul>
+              <li>Support utilisateurs et résolution d'incidents de niveau 1.</li>
+              <li>Préparation, installation et déploiement de matériel informatique.</li>
+              <li>Suivi du parc, documentation et mise à jour des informations techniques.</li>
+              <li>Utilisation d'outils ITSM dans un environnement professionnel structuré.</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -825,7 +1186,7 @@ function Epreuves() {
           </div>
         ))}
       </div>
-      <div style={{maxWidth:'860px',margin:'2rem auto 0',background:'var(--card)',border:'1px solid var(--border)',borderRadius:'22px',padding:'2rem 2.5rem',boxShadow:'var(--shadow)',display:'flex',alignItems:'center',gap:'2rem',flexWrap:'wrap'}}>
+      <div style={{display:'none',maxWidth:'860px',margin:'2rem auto 0',background:'var(--card)',border:'1px solid var(--border)',borderRadius:'22px',padding:'2rem 2.5rem',boxShadow:'var(--shadow)',alignItems:'center',gap:'2rem',flexWrap:'wrap'}}>
         <div style={{flexShrink:0,width:'52px',height:'52px',background:'linear-gradient(135deg,#7a4f2e18,#c4883a18)',borderRadius:'14px',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'1.6rem'}}>✳️</div>
         <div style={{flex:1,minWidth:'200px'}}>
           <div style={{fontSize:'.68rem',fontWeight:800,letterSpacing:'.18em',textTransform:'uppercase',color:'var(--accent2)',marginBottom:'.4rem',fontFamily:"'JetBrains Mono',monospace"}}>Certification complémentaire</div>
@@ -849,16 +1210,123 @@ function Epreuves() {
   );
 }
 
+function MicrosoftMark() {
+  return (
+    <svg viewBox="0 0 32 32" aria-hidden="true">
+      <rect x="4" y="4" width="11" height="11" rx="1.5" fill="#f25022"/>
+      <rect x="17" y="4" width="11" height="11" rx="1.5" fill="#7fba00"/>
+      <rect x="4" y="17" width="11" height="11" rx="1.5" fill="#00a4ef"/>
+      <rect x="17" y="17" width="11" height="11" rx="1.5" fill="#ffb900"/>
+    </svg>
+  );
+}
+
+function IconExternal() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+    </svg>
+  );
+}
+
+function IconDownload() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/>
+    </svg>
+  );
+}
+
+function IconBadge() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="8" r="6"/><path d="M8.21 13.89 7 22l5-3 5 3-1.21-8.11"/>
+    </svg>
+  );
+}
+
+function Certifications() {
+  return (
+    <section id="certifications" className="section section-alt">
+      <div className="center">
+        <div className="sec-label">Certification complémentaire</div>
+        <div className="sec-title">Certifications</div>
+        <p className="sec-sub">Deux parcours Microsoft présentés avec leur utilité concrète</p>
+      </div>
+      <div className="certs-wrap">
+        {CERTIFICATIONS.map(cert => (
+          <article className="cert-card" key={cert.title}>
+            <div className="cert-head">
+              <div className="cert-title-row">
+                <div className="cert-icon"><MicrosoftMark/></div>
+                <h3 className="cert-title">{cert.title}</h3>
+              </div>
+              <span className="cert-status"><IconBadge/> {cert.status}</span>
+            </div>
+            <div className="cert-meta">
+              <span>{cert.platform}</span>
+              <span>{cert.year}</span>
+            </div>
+            <p className="cert-summary">{cert.summary}</p>
+            <div className="cert-panel">
+              <div className="cert-panel-title">Presentation</div>
+              <p><strong>Pourquoi cette certification :</strong> {cert.why}</p>
+              <p><strong>Ce que j'apprends :</strong> {cert.learn}</p>
+              <p><strong>Ce que ça apporte en entreprise :</strong> {cert.business}</p>
+            </div>
+            <div className="cert-tags">
+              {cert.tags.map(tag => <span className="cert-tag" key={tag}>{tag}</span>)}
+            </div>
+            <div className="cert-actions">
+              <a className="cert-btn cert-btn-main" href={cert.proof} target="_blank" rel="noopener noreferrer"><IconExternal/> Ouvrir preuve</a>
+              <a className="cert-btn cert-btn-soft" href={cert.proof} download><IconDownload/> Télécharger</a>
+              <a className="cert-btn cert-btn-soft" href={cert.verify} target="_blank" rel="noopener noreferrer"><IconExternal/> Vérifier</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function Projets() {
+  const [projectGroup, setProjectGroup] = useState('school');
+  const activeProjects = projectGroup === 'school' ? PROJECTS : ENTERPRISE_PROJECTS;
+  const tabs = [
+    { id: 'school', label: 'Projets scolaires', count: PROJECTS.length },
+    { id: 'enterprise', label: 'Projets entreprise', count: ENTERPRISE_PROJECTS.length },
+  ];
+
   return (
     <section id="projets" className="section section-alt">
       <div className="center">
         <div className="sec-label">Réalisations</div>
         <div className="sec-title">Mes Projets</div>
-        <p className="sec-sub">Projets réalisés en formation et en entreprise</p>
+        <p className="sec-sub">Mes principales réalisations techniques et documentations</p>
+      </div>
+      <div className="project-tabs" role="tablist" aria-label="Filtrer les projets">
+        {tabs.map(tab => (
+          <button
+            key={tab.id}
+            type="button"
+            className={`project-tab ${projectGroup === tab.id ? 'active' : ''}`}
+            onClick={() => setProjectGroup(tab.id)}
+            aria-pressed={projectGroup === tab.id}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              {tab.id === 'school' ? (
+                <><path d="m22 10-10-5-10 5 10 5 10-5Z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></>
+              ) : (
+                <><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></>
+              )}
+            </svg>
+            {tab.label}
+            <span>({tab.count})</span>
+          </button>
+        ))}
       </div>
       <div className="projects-grid">
-        {PROJECTS.map(p => (
+        {activeProjects.map(p => (
           <div className="proj-card" key={p.title}>
             <div className="proj-thumb" style={{background:p.grad}}>
               <div className="proj-thumb-overlay"/>
@@ -873,6 +1341,18 @@ function Projets() {
               <div className="proj-tags">
                 {p.tags.map(t => <span className="ptag" key={t}>{t}</span>)}
               </div>
+              {p.doc && (
+                <div className="proj-doc">
+                  <a className="proj-doc-link" href={p.doc} target="_blank" rel="noopener noreferrer">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
+                    Prévisualiser
+                  </a>
+                  <a className="proj-doc-link" href={p.doc} download>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+                    Télécharger
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         ))}
@@ -886,11 +1366,11 @@ function Veille() {
     <section id="veille" className="section">
       <div className="center">
         <div className="sec-label">Veille Technologique</div>
-        <div className="sec-title">Mes Articles</div>
-        <p className="sec-sub">Ma veille sur les évolutions des systèmes, réseaux et cybersécurité</p>
+        <div className="sec-title">Memoire vive & noyaux Linux</div>
+        <p className="sec-sub">Un apercu de ma veille : composants materiels, performances systeme, versions Linux et correctifs a suivre.</p>
       </div>
       <div className="veille-grid">
-        {VEILLE.map(v => (
+        {RAM_VEILLE.map(v => (
           <div className="veille-card" key={v.title}>
             <div className="veille-thumb" style={{background:v.grad}}>{v.emoji}</div>
             <div className="veille-body">
@@ -900,13 +1380,23 @@ function Veille() {
               </div>
               <h3>{v.title}</h3>
               <p>{v.desc}</p>
+              <div className="veille-points">
+                {v.points.map(([label, text]) => (
+                  <div className="veille-point" key={label}><strong>{label} :</strong> {text}</div>
+                ))}
+              </div>
+              <div className="veille-tags">
+                {v.tags.map(tag => <span className="veille-tag" key={tag}>{tag}</span>)}
+              </div>
               <div style={{fontSize:'.78rem',color:'var(--muted2)',fontFamily:"'JetBrains Mono',monospace",marginBottom:'.7rem'}}>
                 Source : {v.source}
               </div>
-              <a className="veille-link" href="#">Lire l'article →</a>
             </div>
           </div>
         ))}
+      </div>
+      <div className="center" style={{marginTop:'2rem'}}>
+        <a className="btn-fill" href="veille.html">Aller vers ma veille</a>
       </div>
     </section>
   );
@@ -930,11 +1420,11 @@ function Contact() {
           </a>
         </div>
         <div className="contact-links">
-          <a className="contact-link" href="https://linkedin.com/in/abdoulaye-coulibaly" target="_blank">
+          <a className="contact-link" href="https://www.linkedin.com/in/abdoulaye-coulibaly-18a4b1333" target="_blank">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             LinkedIn
           </a>
-          <a className="contact-link" href="https://github.com/abdoulaye-coulibaly" target="_blank">
+          <a className="contact-link" href="https://github.com/davebtb" target="_blank">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
             GitHub
           </a>
@@ -966,9 +1456,11 @@ function App() {
       <Navbar/>
       <Hero/>
       <About/>
+      <MetroFrance/>
       <Parcours/>
       <Competences/>
       <Epreuves/>
+      <Certifications/>
       <Projets/>
       <Veille/>
       <Contact/>
