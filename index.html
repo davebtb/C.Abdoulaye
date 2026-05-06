@@ -696,32 +696,25 @@ const CERTIFICATIONS = [
 
 const PROJECTS = [
   {
-    emoji: "🗄️", grad: "linear-gradient(135deg,#f2e9d8,#e8d8c0)",
-    cat: "Système", title: "Domaine Active Directory",
-    desc: "Création d'un domaine AD complet avec configuration GPO : restrictions d'accès, politiques systèmes, gestion des utilisateurs et groupes de sécurité.",
-    tags: ["Windows Server", "Active Directory", "GPO", "DNS"],
-    doc: null,
-  },
-  {
-    emoji: "📡", grad: "linear-gradient(135deg,#e8d8c0,#ddc8a8)",
+    emoji: "", grad: "linear-gradient(135deg,#e8d8c0,#ddc8a8)",
     cat: "Supervision", title: "Infrastructure Zabbix",
     desc: "Installation et configuration de Zabbix sur Windows et Linux. Création d'agents, déclencheurs d'alertes et tableaux de bord de supervision.",
     tags: ["Zabbix", "Ubuntu", "Windows", "SNMP"],
-    doc: null,
+    doc: "docs/installation_et_configuration_zabbix.pdf",
   },
   {
     emoji: "🔐", grad: "linear-gradient(135deg,#ddc8a8,#d4bc90)",
     cat: "Sécurité", title: "Serveur Web Sécurisé HTTPS",
     desc: "Configuration d'un serveur web avec certificat SSL, redirection automatique HTTP→HTTPS et durcissement de la configuration Apache.",
     tags: ["Apache", "SSL/TLS", "HTTPS", "Linux"],
-    doc: null,
+    doc: "docs/Configuration_serveur_web_securise_HTTPS.pdf",
   },
   {
     emoji: "🖧", grad: "linear-gradient(135deg,#d4bc90,#c8b078)",
-    cat: "Réseau", title: "Virtualisation Réseau NAT",
-    desc: "Mise en réseau de machines virtuelles via NAT sous VirtualBox. Configuration FTP/FTPS sécurisé, partage de fichiers inter-VMs.",
-    tags: ["VirtualBox", "NAT", "FTP/FTPS", "Réseau"],
-    doc: null,
+    cat: "Réseau", title: "Mise en place d'un intranet Apache2 avec certificat SSL",
+    desc: "Déploiement et configuration d'un serveur web Apache2 pour héberger un intranet local. Sécurisation des flux internes via la mise en place d'un certificat SSL.",
+    tags: ["Apache2", "SSL/TLS", "Intranet", "Réseau"],
+    doc: "docs/Mise_en_place_dun_intranet_Apache2_avec_certificat_SSL auto-signé.pdf",
   },
   {
     emoji: "💾", grad: "linear-gradient(135deg,#e0d4c0,#d4c4a8)",
@@ -849,29 +842,29 @@ const RAM_VEILLE = [
   {
     emoji: "RAM", grad: "linear-gradient(135deg,#f2e9d8,#d9c7a8)",
     cat: "Matériel", date: "Mai 2026",
-    title: "Mémoire vive : DDR5, CUDIMM, CAMM2 et les nouveautés à suivre",
-    desc: "La mémoire vive évolue rapidement : la DDR5 devient la norme sur les PC récents, pendant que de nouveaux formats cherchent à améliorer la stabilité, la densité et l'efficacité énergétique.",
+    title: "Pénurie et flambée des prix de la mémoire vive",
+    desc: "La mémoire vive traverse une crise majeure liée à la demande pour l'IA et aux pénuries, entraînant une hausse fulgurante des prix qui impacte l'achat d'infrastructures.",
     points: [
-      ["DDR5", "Elle apporte plus de bande passante que la DDR4, une meilleure gestion de l'alimentation et des fréquences plus élevées pour les postes de travail, PC gaming et serveurs."],
-      ["CUDIMM / CSODIMM", "Ces barrettes DDR5 ajoutent un pilote d'horloge pour stabiliser le signal et permettre des vitesses plus hautes, notamment sur les futures plateformes PC."],
-      ["CAMM2", "Ce format standardisé par JEDEC vise à remplacer progressivement le SO-DIMM dans certains ordinateurs portables avec des modules plus fins et plus denses."],
-      ["Impact SISR", "Pour un technicien système et réseau, comprendre ces évolutions aide à mieux choisir, diagnostiquer et faire évoluer les postes utilisateurs et serveurs."],
+      ["Pénurie mondiale", "La forte demande liée à l'IA provoque une rupture de stock et des tensions majeures chez les fabricants mondiaux comme Samsung."],
+      ["Flambée des coûts", "Les prix de la RAM ont doublé récemment, atteignant des sommets qui bouleversent les budgets informatiques et les stratégies de renouvellement."],
+      ["Prévisions 2027", "Les analystes prévoient une aggravation de la pénurie jusqu'en 2027. Il devient vital d'optimiser la mémoire de l'existant plutôt que de remplacer systématiquement."],
+      ["Impact SISR", "L'administrateur doit adapter sa gestion de parc, anticiper les besoins serveurs critiques et justifier les coûts d'évolution matérielle."],
     ],
-    tags: ["DDR5", "CUDIMM", "CSODIMM", "CAMM2", "SO-DIMM", "Performance"],
-    source: "JEDEC / Micron / Samsung / presse specialisee",
+    tags: ["Pénurie", "Marché", "Budget IT", "Prix", "Hardware"],
+    source: "Les Numériques / Clubic / Tom's Hardware",
   },
   {
     emoji: "LINUX", grad: "linear-gradient(135deg,#e8d8c0,#c8ad82)",
-    cat: "Systemes", date: "Mai 2026",
-    title: "Noyaux Linux : versions, LTS, securite et memoire",
-    desc: "Je surveille les versions du noyau Linux pour suivre les correctifs, les cycles LTS et les changements utiles en administration systeme.",
+    cat: "Cybersécurité", date: "Mai 2026",
+    title: "Noyaux Linux : Les meilleurs choix pour la cyber",
+    desc: "Le choix et la configuration du noyau Linux sont le premier rempart en cybersécurité pour protéger les serveurs contre les vulnérabilités et attaques.",
     points: [
-      ["Versions", "Kernel.org indique Linux 7.0.3 en stable et 7.1-rc2 en mainline au 5 mai 2026."],
-      ["LTS", "Linux 6.18 est une branche longterm active, importante pour les distributions et environnements stables."],
-      ["Memoire", "Les nouveautes noyau touchent aussi le swap, les huge pages, le cache et les performances sous forte charge."],
+      ["Noyaux LTS et Hardened", "Pour la production et la cyber, les branches LTS (Long Term Support) ou les noyaux « Hardened » sont privilégiés pour leur robustesse maximale."],
+      ["Vulnérabilités critiques", "Une veille active permet d'anticiper les failles (comme la récente CVE 'Copy Fail') qui permettent des élévations de privilèges illégitimes (root)."],
+      ["Durcissement (Hardening)", "L'intégration de modules comme SELinux, AppArmor ou grsecurity directement dans le noyau limite grandement l'exploitation de failles (Zero-Day)."],
     ],
-    tags: ["Linux", "Kernel", "LTS", "Securite"],
-    source: "kernel.org / documentation Linux / veille securite",
+    tags: ["Linux", "Kernel", "Cybersécurité", "CVE", "Hardening"],
+    source: "kernel.org / Numerama / it social",
   },
 ];
 
@@ -948,11 +941,11 @@ function Hero() {
           <div className="hero-btns">
             <a className="btn-fill" href="cv.html" target="_blank">📄 Voir mon CV</a>
             <a className="btn-outline" href="#projets">⬇ Mes projets</a>
-            <a className="btn-outline" href="tableau-e5.html" target="_blank">⊞ Tableau E5</a>
+            <a className="btn-outline" href="docs/Tableau_de_synthese_missions (3).pdf" target="_blank" rel="noopener noreferrer">⊞ Tableau E5</a>
           </div>
           <div className="hero-stats">
-            <div><div className="stat-num">3</div><div className="stat-lbl">Expériences</div></div>
-            <div><div className="stat-num">9</div><div className="stat-lbl">Projets réalisés</div></div>
+            <div><div className="stat-num">2</div><div className="stat-lbl">Expériences</div></div>
+            <div><div className="stat-num">16</div><div className="stat-lbl">Projets réalisés</div></div>
             <div><div className="stat-num">19</div><div className="stat-lbl">ans</div></div>
           </div>
         </div>
@@ -961,10 +954,6 @@ function Hero() {
           <div className="hcard-name">Abdoulaye COULIBALY</div>
           <div className="hcard-role">BTS SIO option SISR<br/>IPSSI Paris</div>
           <div className="hcard-divider"/>
-          <div className="hcard-row"><span className="ico">📍</span><span>Saint-Denis <strong>(93200)</strong></span></div>
-          <div className="hcard-row"><span className="ico">📧</span><span>abdoulayecoul667@gmail.com</span></div>
-          <div className="hcard-row"><span className="ico">📞</span><span><strong>+33 6 21 28 81 94</strong></span></div>
-          <div className="hcard-row"><span className="ico">🔰</span><span><strong>19 ans</strong></span></div>
           <div className="hcard-tags">
             {["Rigoureux","Discipliné","Sérieux","Responsable","Équipe"].map(q => <span className="q-tag" key={q}>{q}</span>)}
           </div>
@@ -1341,18 +1330,16 @@ function Projets() {
               <div className="proj-tags">
                 {p.tags.map(t => <span className="ptag" key={t}>{t}</span>)}
               </div>
-              {p.doc && (
-                <div className="proj-doc">
-                  <a className="proj-doc-link" href={p.doc} target="_blank" rel="noopener noreferrer">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
-                    Prévisualiser
-                  </a>
-                  <a className="proj-doc-link" href={p.doc} download>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
-                    Télécharger
-                  </a>
-                </div>
-              )}
+              <div className="proj-doc">
+                <a className="proj-doc-link" href={p.doc || "#"} target="_blank" rel="noopener noreferrer" onClick={(e) => !p.doc && e.preventDefault()}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
+                  Prévisualiser
+                </a>
+                <a className="proj-doc-link" href={p.doc || "#"} download={p.doc ? true : undefined} onClick={(e) => !p.doc && e.preventDefault()}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+                  Télécharger
+                </a>
+              </div>
             </div>
           </div>
         ))}
@@ -1366,8 +1353,8 @@ function Veille() {
     <section id="veille" className="section">
       <div className="center">
         <div className="sec-label">Veille Technologique</div>
-        <div className="sec-title">Memoire vive & noyaux Linux</div>
-        <p className="sec-sub">Un apercu de ma veille : composants materiels, performances systeme, versions Linux et correctifs a suivre.</p>
+        <div className="sec-title">Pénurie RAM & Noyaux Linux Cyber</div>
+        <p className="sec-sub">Un aperçu de ma veille : impact de la crise de la mémoire sur les budgets IT, et durcissement des noyaux Linux en cybersécurité.</p>
       </div>
       <div className="veille-grid">
         {RAM_VEILLE.map(v => (
@@ -1428,10 +1415,6 @@ function Contact() {
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
             GitHub
           </a>
-          <a className="contact-link" href="tel:+33621288194">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.01 2.22 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14z"/></svg>
-            +33 6 21 28 81 94
-          </a>
           <a className="contact-link" href="cv.html" target="_blank">
             📄 Télécharger CV
           </a>
@@ -1445,7 +1428,7 @@ function Footer() {
   return (
     <footer className="footer">
       <span>© {new Date().getFullYear()} <strong>Abdoulaye COULIBALY</strong> — BTS SIO option SISR</span>
-      <span>IPSSI Paris · Saint-Denis (93200)</span>
+      <span>IPSSI Paris</span>
     </footer>
   );
 }
